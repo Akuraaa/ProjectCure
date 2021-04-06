@@ -35,3 +35,14 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Crashlytics generated file
+crashlytics-build.properties
+
+*.meta
+*.meta
+*.meta
+*.meta
+
+# include meta files
+!*.*.meta
