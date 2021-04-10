@@ -5,7 +5,9 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     public int selectedWeapon = 0;
-    public Gun[] guns;
+    public Transform[] guns;
+    [HideInInspector]
+    public bool m4, pistol;
 
     private void Start()
     {
@@ -14,14 +16,6 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void Update()
     {
-        foreach (Gun weapon in guns)
-        {
-            if (!weapon.changeWeapon)
-            {
-                return;
-            }
-        }
-
         int previousSelectedWeapon = selectedWeapon;
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -46,6 +40,27 @@ public class WeaponSwitcher : MonoBehaviour
             }
         }
 
+        foreach (var gun in guns)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                pistol = true;
+                m4 = false;
+                guns[0].gameObject.SetActive(true);
+                StartCoroutine(changeWeapon());
+                guns[1].gameObject.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                m4 = true;
+                pistol = false;
+                guns[1].gameObject.SetActive(true);
+                StartCoroutine(changeWeapon());
+                guns[0].gameObject.SetActive(false);
+            }
+        }
+
         if (previousSelectedWeapon != selectedWeapon)
         {
             SelectWeapon();
@@ -67,5 +82,10 @@ public class WeaponSwitcher : MonoBehaviour
             }
             i++;
         }
+    }
+
+    IEnumerator changeWeapon()
+    {
+        yield return new WaitForSeconds(.5f);
     }
 }

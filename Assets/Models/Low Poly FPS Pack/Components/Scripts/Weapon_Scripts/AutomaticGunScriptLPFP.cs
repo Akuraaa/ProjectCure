@@ -19,10 +19,10 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 	[Tooltip("Default value for camera field of view (40 is recommended).")]
 	public float defaultFov = 40.0f;
 
-	[Header("UI Weapon Name")]
-	[Tooltip("Name of the current weapon, shown in the game UI.")]
-	public string weaponName;
-	private string storedWeaponName;
+	//[Header("UI Weapon Name")]
+	//[Tooltip("Name of the current weapon, shown in the game UI.")]
+	//public string weaponName;
+	//private string storedWeaponName;
 
 	[Header("Weapon Attachments (Only use one scope attachment)")]
 	[Space(10)]
@@ -184,11 +184,11 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 	//Audio source used for shoot sound
 	public AudioSource shootAudioSource;
 
-	[Header("UI Components")]
-	public Text timescaleText;
-	public Text currentWeaponText;
-	public Text currentAmmoText;
-	public Text totalAmmoText;
+	//[Header("UI Components")]
+	//public Text timescaleText;
+	//public Text currentWeaponText;
+	//public Text currentAmmoText;
+	//public Text totalAmmoText;
 
 	[System.Serializable]
 	public class prefabs
@@ -380,12 +380,12 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 
 	private void Start () {
 		
-		//Save the weapon name
-		storedWeaponName = weaponName;
-		//Get weapon name from string to text
-		currentWeaponText.text = weaponName;
-		//Set total ammo text from total ammo int
-		totalAmmoText.text = ammo.ToString();
+		////Save the weapon name
+		//storedWeaponName = weaponName;
+		////Get weapon name from string to text
+		//currentWeaponText.text = weaponName;
+		////Set total ammo text from total ammo int
+		//totalAmmoText.text = ammo.ToString();
 
 		//Weapon sway
 		initialSwayPosition = transform.localPosition;
@@ -578,40 +578,9 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 			randomMuzzleflashValue = Random.Range (minRandomValue, maxRandomValue);
 		}
 
-		//Timescale settings
-		//Change timescale to normal when 1 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha1)) 
-		{
-			Time.timeScale = 1.0f;
-			timescaleText.text = "1.0";
-		}
-		//Change timesccale to 50% when 2 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha2)) 
-		{
-			Time.timeScale = 0.5f;
-			timescaleText.text = "0.5";
-		}
-		//Change timescale to 25% when 3 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha3)) 
-		{
-			Time.timeScale = 0.25f;
-			timescaleText.text = "0.25";
-		}
-		//Change timescale to 10% when 4 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha4)) 
-		{
-			Time.timeScale = 0.1f;
-			timescaleText.text = "0.1";
-		}
-		//Pause game when 5 key is pressed
-		if (Input.GetKeyDown (KeyCode.Alpha5)) 
-		{
-			Time.timeScale = 0.0f;
-			timescaleText.text = "0.0";
-		}
 
 		//Set current ammo text from ammo int
-		currentAmmoText.text = currentAmmo.ToString ();
+		//currentAmmoText.text = currentAmmo.ToString ();
 
 		//Continosuly check which animation 
 		//is currently playing
@@ -640,7 +609,7 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 		if (currentAmmo == 0) 
 		{
 			//Show out of ammo text
-			currentWeaponText.text = "OUT OF AMMO";
+			//currentWeaponText.text = "OUT OF AMMO";
 			//Toggle bool
 			outOfAmmo = true;
 			//Auto reload if true
@@ -652,7 +621,7 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 		else 
 		{
 			//When ammo is full, show weapon name again
-			currentWeaponText.text = storedWeaponName.ToString ();
+			//currentWeaponText.text = storedWeaponName.ToString ();
 			//Toggle bool
 			outOfAmmo = false;
 			//anim.SetBool ("Out Of Ammo", false);

@@ -69,6 +69,8 @@ namespace FPSControllerLPFP
         private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
 
+        private WeaponSwitcher wpSwitcher;
+
         /// Initializes the FpsController on start.
         private void Start()
         {
@@ -85,6 +87,16 @@ namespace FPSControllerLPFP
             _velocityZ = new SmoothVelocity();
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
+
+            wpSwitcher = GetComponent<WeaponSwitcher>();
+            if (wpSwitcher.pistol)
+            {
+                arms = wpSwitcher.guns[0];
+            }
+            if (wpSwitcher.m4)
+            {
+                arms = wpSwitcher.guns[1];
+            }
         }
 			
         private Transform AssignCharactersCamera()
@@ -138,12 +150,21 @@ namespace FPSControllerLPFP
             // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
             RotateCameraAndCharacter();
             MoveCharacter();
-            _isGrounded = false;
+            _isGrounded = false;  
         }
 			
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
         private void Update()
         {
+            if (wpSwitcher.pistol)
+            {
+                arms = wpSwitcher.guns[0];
+            }
+            if (wpSwitcher.m4)
+            {
+                arms = wpSwitcher.guns[1];
+            }
+
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             PlayFootstepSounds();
