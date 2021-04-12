@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 namespace FPSControllerLPFP
 {
@@ -38,6 +39,9 @@ namespace FPSControllerLPFP
         [Tooltip("Amount of force applied to the player when jumping."), SerializeField]
         private float jumpForce = 35f;
 
+        [Tooltip("Amount of force applied to the player when super jumping is enable."), SerializeField]
+        private float superJumpForce = 55f;
+
 		[Header("Look Settings")]
         [Tooltip("Rotation speed of the fps controller."), SerializeField]
         private float mouseSensitivity = 7f;
@@ -55,6 +59,16 @@ namespace FPSControllerLPFP
 
         [Tooltip("The names of the axes and buttons for Unity's Input Manager."), SerializeField]
         private FpsInput input;
+
+        [Header("UI Settings")]
+        public TMP_Text healthText;
+
+        [Header("Cloak")]
+        public float cloakTimer;
+        
+        private float _rCloakTime;
+        public LayerMask cloakMask;
+
 #pragma warning restore 649
 
         private Rigidbody _rigidbody;
@@ -70,6 +84,7 @@ namespace FPSControllerLPFP
         private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
 
         private WeaponSwitcher wpSwitcher;
+        public int health = 100;
 
         /// Initializes the FpsController on start.
         private void Start()
@@ -167,6 +182,9 @@ namespace FPSControllerLPFP
 
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
+            SuperJump();
+            Cloak();
+            Dash();
             PlayFootstepSounds();
         }
 
@@ -273,6 +291,22 @@ namespace FPSControllerLPFP
             _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
+        private void SuperJump()
+        {
+            if (!_isGrounded || !input.SuperJump) return;
+            _isGrounded = false;
+            _rigidbody.AddForce(Vector3.up * superJumpForce, ForceMode.Impulse);
+        }
+
+        private void Cloak()
+        {
+
+        }
+
+        private void Dash()
+        {
+
+        }
         private void PlayFootstepSounds()
         {
             if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
@@ -361,6 +395,18 @@ namespace FPSControllerLPFP
              SerializeField]
             private string jump = "Jump";
 
+            [Tooltip("The name of the virtual button mapped to super jump."), 
+             SerializeField]
+            private string superjump = "SuperJump";
+
+            [Tooltip("The name of the virtual button mapped to dash."),
+             SerializeField]
+            private string dash = "Dash";
+
+            [Tooltip("The name of the virtual button mapped to cloak."),
+             SerializeField]
+            private string cloak = "Cloak";
+
             /// Returns the value of the virtual axis mapped to rotate the camera around the y axis.
             public float RotateX
             {
@@ -395,6 +441,21 @@ namespace FPSControllerLPFP
             public bool Jump
             {
                 get { return Input.GetButtonDown(jump); }
+            }
+
+            public bool SuperJump
+            {
+                get { return Input.GetButtonDown(superjump); }
+            }
+
+            public bool Dash
+            {
+                get { return Input.GetButtonDown(dash); }
+            }
+
+            public bool Cloak
+            {
+                get { return Input.GetButtonDown(cloak); }
             }
         }
     }

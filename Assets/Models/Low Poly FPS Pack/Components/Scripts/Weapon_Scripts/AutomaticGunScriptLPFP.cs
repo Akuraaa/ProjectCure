@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class AutomaticGunScriptLPFP : MonoBehaviour {
 
@@ -184,11 +185,10 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 	//Audio source used for shoot sound
 	public AudioSource shootAudioSource;
 
-	//[Header("UI Components")]
-	//public Text timescaleText;
-	//public Text currentWeaponText;
-	//public Text currentAmmoText;
-	//public Text totalAmmoText;
+	[Header("UI Components")]
+	public TMP_Text currentAmmoText;
+	public TMP_Text totalAmmoText;
+	public Image crosshair;
 
 	[System.Serializable]
 	public class prefabs
@@ -380,12 +380,8 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 
 	private void Start () {
 		
-		////Save the weapon name
-		//storedWeaponName = weaponName;
-		////Get weapon name from string to text
-		//currentWeaponText.text = weaponName;
 		////Set total ammo text from total ammo int
-		//totalAmmoText.text = ammo.ToString();
+		totalAmmoText.text = ammo.ToString();
 
 		//Weapon sway
 		initialSwayPosition = transform.localPosition;
@@ -421,6 +417,7 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 		//Toggle camera FOV when right click is held down
 		if(Input.GetButton("Fire2") && !isReloading && !isRunning && !isInspecting) 
 		{
+			crosshair.enabled = false;
 			if (ironSights == true) 
 			{
 				gunCamera.fieldOfView = Mathf.Lerp (gunCamera.fieldOfView,
@@ -510,10 +507,11 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 		} 
 		else 
 		{
+
 			//When right click is released
 			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
 				defaultFov,fovSpeed * Time.deltaTime);
-
+			crosshair.enabled = true;
 			isAiming = false;
 
 			//If iron sights are enabled, use normal aim out
@@ -580,7 +578,7 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 
 
 		//Set current ammo text from ammo int
-		//currentAmmoText.text = currentAmmo.ToString ();
+		currentAmmoText.text = currentAmmo.ToString ();
 
 		//Continosuly check which animation 
 		//is currently playing

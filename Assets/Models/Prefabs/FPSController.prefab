@@ -2067,6 +2067,9 @@ MonoBehaviour:
   lightDuration: 0.02
   mainAudioSource: {fileID: 4267776281810985594}
   shootAudioSource: {fileID: 4268640949081488384}
+  currentAmmoText: {fileID: 0}
+  totalAmmoText: {fileID: 0}
+  crosshair: {fileID: 0}
   Prefabs:
     bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8,
       type: 3}
@@ -13526,10 +13529,11 @@ MonoBehaviour:
   walkingSound: {fileID: 8300000, guid: 5ac86ac5747770349a6c124f36d233e1, type: 3}
   runningSound: {fileID: 8300000, guid: 8a49c532c25ef274781a01f02cd8b425, type: 3}
   walkingSpeed: 5
-  runningSpeed: 9
+  runningSpeed: 10
   movementSmoothness: 0.125
-  jumpForce: 20
-  mouseSensitivity: 4
+  jumpForce: 25
+  superJumpForce: 65
+  mouseSensitivity: 3
   rotationSmoothness: 0.05
   minVerticalAngle: -90
   maxVerticalAngle: 90
@@ -13540,6 +13544,9 @@ MonoBehaviour:
     strafe: Vertical
     run: Fire3
     jump: Jump
+    superjump: SuperJump
+  healthText: {fileID: 0}
+  health: 100
 --- !u!114 &4188248386399297703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14745,6 +14752,9 @@ MonoBehaviour:
   lightDuration: 0.02
   mainAudioSource: {fileID: 5468618601536276704}
   shootAudioSource: {fileID: 5468065924247654666}
+  currentAmmoText: {fileID: 0}
+  totalAmmoText: {fileID: 0}
+  crosshair: {fileID: 0}
   Prefabs:
     bulletPrefab: {fileID: 4879702113200764, guid: 5953171a59c27394e9ad5cbb564affa8,
       type: 3}
