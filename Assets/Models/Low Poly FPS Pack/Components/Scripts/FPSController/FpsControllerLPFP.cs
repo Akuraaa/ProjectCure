@@ -58,7 +58,10 @@ namespace FPSControllerLPFP
         private float maxVerticalAngle = 90f;
 
         [Tooltip("The names of the axes and buttons for Unity's Input Manager."), SerializeField]
-        private FpsInput input;
+        private FPSInput input;
+
+        public Vector3 movementVector;
+        private Vector3 direction;
 
         [Header("UI Settings")]
         public TMP_Text healthText;
@@ -86,7 +89,12 @@ namespace FPSControllerLPFP
         private WeaponSwitcher wpSwitcher;
         public int health = 100;
 
-        /// Initializes the FpsController on start.
+        bool isDashing;
+        int dashAttempts;
+        float dashStarTime;
+
+        //CharacterController characterController;
+
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -165,6 +173,7 @@ namespace FPSControllerLPFP
             // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
             RotateCameraAndCharacter();
             MoveCharacter();
+            movementVector = direction;
             _isGrounded = false;  
         }
 			
@@ -183,8 +192,8 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             SuperJump();
-            Cloak();
-            Dash();
+            //Cloak();
+            //Dash();
             PlayFootstepSounds();
         }
 
@@ -244,7 +253,8 @@ namespace FPSControllerLPFP
 
         private void MoveCharacter()
         {
-            var direction = new Vector3(input.Move, 0f, input.Strafe).normalized;
+            direction = new Vector3(input.Move, 0f, input.Strafe).normalized;
+            //movementVector = direction;
             var worldDirection = transform.TransformDirection(direction);
             var velocity = worldDirection * (input.Run ? runningSpeed : walkingSpeed);
             //Checks for collisions so that the character does not stuck when jumping against walls.
@@ -300,13 +310,56 @@ namespace FPSControllerLPFP
 
         private void Cloak()
         {
-
+            
         }
 
         private void Dash()
         {
+            bool isTryingToDash = Input.GetKeyDown(KeyCode.V);
 
+            if (isTryingToDash && !isDashing)
+            {
+                if (dashAttempts <= 50)
+                {
+                    OnStartDash();
+                }
+            }
+
+            if (isDashing)
+            {
+                if(Time.time - dashStarTime <= .4f)
+                {
+                    if (movementVector.Equals(new Vector3(0, -1.5f, 0)))
+                    {
+                       //characterController.Move(movementVector * 30f * Time.deltaTime);
+                        _rigidbody.MovePosition(movementVector * 30f * Time.deltaTime);
+                    }
+                    else
+                    {
+                        //characterController.Move(movementVector.normalized * 30f * Time.deltaTime);
+                        _rigidbody.MovePosition(movementVector.normalized * 30f * Time.deltaTime);
+                    }
+                }
+            }
+            else
+            {
+                OnEndDash();
+            }
         }
+
+        private void OnStartDash()
+        {
+            isDashing = true;
+            dashStarTime = Time.time;
+            dashAttempts += 1;
+        }
+
+        private void OnEndDash()
+        {
+            isDashing = false;
+            dashStarTime = 0;
+        }
+
         private void PlayFootstepSounds()
         {
             if (_isGrounded && _rigidbody.velocity.sqrMagnitude > 0.1f)
@@ -369,7 +422,7 @@ namespace FPSControllerLPFP
 			
         /// Input mappings
         [Serializable]
-        private class FpsInput
+        private class FPSInput
         {
             [Tooltip("The name of the virtual axis mapped to rotate the camera around the y axis."),
              SerializeField]
