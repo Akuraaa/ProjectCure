@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using TMPro;
@@ -68,9 +69,14 @@ namespace FPSControllerLPFP
 
         [Header("Cloak")]
         public float cloakTimer;
-        
+
         private float _rCloakTime;
         public LayerMask cloakMask;
+        public LayerMask playerMask;
+
+        [Header("Dash")]
+        public float dashForce;
+        public float dashDuration;
 
 #pragma warning restore 649
 
@@ -89,12 +95,6 @@ namespace FPSControllerLPFP
         private WeaponSwitcher wpSwitcher;
         public int health = 100;
 
-        bool isDashing;
-        int dashAttempts;
-        float dashStarTime;
-
-        //CharacterController characterController;
-
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody>();
@@ -111,6 +111,7 @@ namespace FPSControllerLPFP
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
 
+            cloakTimer = _rCloakTime;
             wpSwitcher = GetComponent<WeaponSwitcher>();
             if (wpSwitcher.pistol)
             {
@@ -129,8 +130,6 @@ namespace FPSControllerLPFP
 			return arms;
         }
         
-        /// Clamps <see cref="minVerticalAngle"/> and <see cref="maxVerticalAngle"/> to valid values and
-        /// ensures that <see cref="minVerticalAngle"/> is less than <see cref="maxVerticalAngle"/>.
         private void ValidateRotationRestriction()
         {
             minVerticalAngle = ClampRotationRestriction(minVerticalAngle, -90, 90);
@@ -150,7 +149,6 @@ namespace FPSControllerLPFP
             return Mathf.Clamp(rotationRestriction, min, max);
         }
 			
-        /// Checks if the character is on the ground.
         private void OnCollisionStay()
         {
             var bounds = _collider.bounds;
@@ -167,17 +165,14 @@ namespace FPSControllerLPFP
             _isGrounded = true;
         }
 			
-        /// Processes the character movement and the camera rotation every fixed framerate frame.
         private void FixedUpdate()
         {
-            // FixedUpdate is used instead of Update because this code is dealing with physics and smoothing.
             RotateCameraAndCharacter();
             MoveCharacter();
             movementVector = direction;
             _isGrounded = false;  
         }
-			
-        /// Moves the camera to the character, processes jumping and plays sounds every frame.
+
         private void Update()
         {
             if (wpSwitcher.pistol)
@@ -192,8 +187,8 @@ namespace FPSControllerLPFP
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
             SuperJump();
-            //Cloak();
-            //Dash();
+            Cloak();
+            Dash();
             PlayFootstepSounds();
         }
 
@@ -211,20 +206,16 @@ namespace FPSControllerLPFP
 			arms.rotation = rotation;
         }
 			
-        /// Returns the target rotation of the camera around the y axis with no smoothing.
         private float RotationXRaw
         {
             get { return input.RotateX * mouseSensitivity; }
         }
 			
-        /// Returns the target rotation of the camera around the x axis with no smoothing.
         private float RotationYRaw
         {
             get { return input.RotateY * mouseSensitivity; }
         }
 			
-        /// Clamps the rotation of the camera around the x axis
-        /// between the <see cref="minVerticalAngle"/> and <see cref="maxVerticalAngle"/> values.
         private float RestrictVerticalRotation(float mouseY)
         {
 			var currentAngle = NormalizeAngle(arms.eulerAngles.x);
@@ -233,9 +224,6 @@ namespace FPSControllerLPFP
             return Mathf.Clamp(mouseY, minY + 0.01f, maxY - 0.01f);
         }
 			
-        /// Normalize an angle between -180 and 180 degrees.
-        /// <param name="angleDegrees">angle to normalize</param>
-        /// <returns>normalized angle</returns>
         private static float NormalizeAngle(float angleDegrees)
         {
             while (angleDegrees > 180f)
@@ -310,54 +298,24 @@ namespace FPSControllerLPFP
 
         private void Cloak()
         {
-            
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                gameObject.layer = 10;     
+            }
         }
 
         private void Dash()
         {
-            bool isTryingToDash = Input.GetKeyDown(KeyCode.V);
-
-            if (isTryingToDash && !isDashing)
-            {
-                if (dashAttempts <= 50)
-                {
-                    OnStartDash();
-                }
-            }
-
-            if (isDashing)
-            {
-                if(Time.time - dashStarTime <= .4f)
-                {
-                    if (movementVector.Equals(new Vector3(0, -1.5f, 0)))
-                    {
-                       //characterController.Move(movementVector * 30f * Time.deltaTime);
-                        _rigidbody.MovePosition(movementVector * 30f * Time.deltaTime);
-                    }
-                    else
-                    {
-                        //characterController.Move(movementVector.normalized * 30f * Time.deltaTime);
-                        _rigidbody.MovePosition(movementVector.normalized * 30f * Time.deltaTime);
-                    }
-                }
-            }
-            else
-            {
-                OnEndDash();
-            }
+            if (Input.GetKeyDown(KeyCode.V))
+            StartCoroutine(CastDash());
+            //_rigidbody.velocity = (Camera.main.transform.forward * dashForce);
         }
 
-        private void OnStartDash()
+        public IEnumerator CastDash()
         {
-            isDashing = true;
-            dashStarTime = Time.time;
-            dashAttempts += 1;
-        }
-
-        private void OnEndDash()
-        {
-            isDashing = false;
-            dashStarTime = 0;
+            _rigidbody.AddForce(transform.forward * dashForce, ForceMode.VelocityChange);
+            yield return new WaitForSeconds(dashDuration);
+            _rigidbody.velocity = Vector3.zero;
         }
 
         private void PlayFootstepSounds()
@@ -379,7 +337,6 @@ namespace FPSControllerLPFP
             }
         }
 			
-        /// A helper for assistance with smoothing the camera rotation.
         private class SmoothRotation
         {
             private float _current;
@@ -402,7 +359,6 @@ namespace FPSControllerLPFP
             }
         }
 			
-        /// A helper for assistance with smoothing the movement.
         private class SmoothVelocity
         {
             private float _current;
@@ -419,8 +375,7 @@ namespace FPSControllerLPFP
                 set { _current = value; }
             }
         }
-			
-        /// Input mappings
+	
         [Serializable]
         private class FPSInput
         {
