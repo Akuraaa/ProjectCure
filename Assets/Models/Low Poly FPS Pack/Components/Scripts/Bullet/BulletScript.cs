@@ -19,6 +19,8 @@ public class BulletScript : MonoBehaviour {
 	public Transform [] dirtImpactPrefabs;
 	public Transform []	concreteImpactPrefabs;
 
+	public int damage;
+
 	private void Start () 
 	{
 		//Start destroy timer
@@ -127,7 +129,19 @@ public class BulletScript : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator DestroyTimer () 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.gameObject.GetComponent<Target>())
+        {
+			Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], this.gameObject.transform.position,
+				Quaternion.identity);
+			other.GetComponent<Target>().TakeDamage(damage);
+			Destroy(gameObject);
+        }
+
+	}
+
+    private IEnumerator DestroyTimer () 
 	{
 		//Wait random time based on min and max values
 		yield return new WaitForSeconds
