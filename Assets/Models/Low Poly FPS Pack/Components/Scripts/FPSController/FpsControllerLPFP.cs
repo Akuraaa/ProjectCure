@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace FPSControllerLPFP
 {
@@ -66,6 +67,9 @@ namespace FPSControllerLPFP
 
         [Header("UI Settings")]
         public TMP_Text healthText;
+        public Image Cloak, Dash, SuperJump, AlphaBloody;
+
+        public GameObject habilities;
 
         [Header("Cloak")]
         public float cloakTimer;
@@ -97,6 +101,7 @@ namespace FPSControllerLPFP
 
         private void Start()
         {
+            cloakTimer = -_rCloakTime;
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             _collider = GetComponent<CapsuleCollider>();
@@ -110,8 +115,6 @@ namespace FPSControllerLPFP
             _velocityZ = new SmoothVelocity();
             Cursor.lockState = CursorLockMode.Locked;
             ValidateRotationRestriction();
-
-            cloakTimer = _rCloakTime;
             wpSwitcher = GetComponent<WeaponSwitcher>();
             if (wpSwitcher.pistol)
             {
@@ -175,6 +178,15 @@ namespace FPSControllerLPFP
 
         private void Update()
         {
+            if(Input.GetKey(KeyCode.F1))
+            {
+                habilities.SetActive(true);
+            }
+            else
+            {
+                habilities.SetActive(false);
+            }
+
             if (wpSwitcher.pistol)
             {
                 arms = wpSwitcher.guns[0];
@@ -186,9 +198,9 @@ namespace FPSControllerLPFP
 
 			arms.position = transform.position + transform.TransformVector(armPosition);
             Jump();
-            SuperJump();
-            Cloak();
-            Dash();
+            MegaJump();
+            Invisible();
+            Dashh();
             PlayFootstepSounds();
         }
 
@@ -282,6 +294,56 @@ namespace FPSControllerLPFP
             return true;
         }
 
+        IEnumerator BloodyScreen()
+        {
+            bool ignore = false;
+            AlphaBloody.GetComponent<Transform>().gameObject.SetActive(true);
+            AlphaBloody.canvasRenderer.SetAlpha(1);
+            AlphaBloody.CrossFadeAlpha(0, 1, ignore);
+            yield return new WaitForSeconds(.5f);
+            AlphaBloody.GetComponent<Transform>().gameObject.SetActive(false);
+            ignore = true;
+        }
+
+        IEnumerator DashUI()
+        {
+            bool ignore = false;
+            Dash.GetComponent<Transform>().gameObject.SetActive(true);
+            Dash.canvasRenderer.SetAlpha(1);
+            Dash.CrossFadeAlpha(0, 1, ignore);
+            yield return new WaitForSeconds(.5f);
+            Dash.GetComponent<Transform>().gameObject.SetActive(false);
+            ignore = true;
+        }
+
+        IEnumerator MegaJumpUI()
+        {
+            bool ignore = false;
+            SuperJump.GetComponent<Transform>().gameObject.SetActive(true);
+            SuperJump.canvasRenderer.SetAlpha(1);
+            SuperJump.CrossFadeAlpha(0, 1, ignore);
+            yield return new WaitForSeconds(.5f);
+            SuperJump.GetComponent<Transform>().gameObject.SetActive(false);
+            ignore = true;
+        }
+
+        IEnumerator InvisibleUI()
+        {
+            bool ignore = false;
+            Cloak.GetComponent<Transform>().gameObject.SetActive(true);
+            Cloak.canvasRenderer.SetAlpha(1);
+            Cloak.CrossFadeAlpha(0, 1, ignore);
+            yield return new WaitForSeconds(.5f);
+            Cloak.CrossFadeAlpha(.25f, 1, ignore);
+            yield return new WaitForSeconds(.5f);
+            Cloak.CrossFadeAlpha(0, 1, ignore);
+            yield return new WaitForSeconds(.5f);
+            Cloak.CrossFadeAlpha(.25f, 1, ignore);
+            yield return new WaitForSeconds(.5f);
+            Cloak.CrossFadeAlpha(0, 1, ignore);
+            Cloak.GetComponent<Transform>().gameObject.SetActive(false);
+            ignore = true;
+        }
         private void Jump()
         {
             if (!_isGrounded || !input.Jump) return;
@@ -289,25 +351,40 @@ namespace FPSControllerLPFP
             _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        private void SuperJump()
+        private void MegaJump()
         {
-            if (!_isGrounded || !input.SuperJump) return;
-            _isGrounded = false;
-            _rigidbody.AddForce(Vector3.up * superJumpForce, ForceMode.Impulse);
-        }
-
-        private void Cloak()
-        {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.E) && _isGrounded)
             {
-                gameObject.layer = 10;     
+                StartCoroutine(MegaJumpUI());
+                _isGrounded = false;
+                _rigidbody.AddForce(Vector3.up * superJumpForce, ForceMode.Impulse);
             }
         }
 
-        private void Dash()
+        private void Invisible()
         {
-            if (Input.GetKeyDown(KeyCode.V))
-            StartCoroutine(CastDash());
+            
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                gameObject.layer = 10;     
+                StartCoroutine(InvisibleUI());
+                cloakTimer -= Time.deltaTime;
+                if (cloakTimer <= 0)
+                {
+                    gameObject.layer = 8;
+                    StopCoroutine(InvisibleUI());
+                    cloakTimer = _rCloakTime;
+                }
+            }
+        }
+
+        private void Dashh()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                StartCoroutine(DashUI());
+                StartCoroutine(CastDash());
+            }
             //_rigidbody.velocity = (Camera.main.transform.forward * dashForce);
         }
 
@@ -374,6 +451,8 @@ namespace FPSControllerLPFP
             {
                 set { _current = value; }
             }
+
+
         }
 	
         [Serializable]
@@ -465,6 +544,8 @@ namespace FPSControllerLPFP
             {
                 get { return Input.GetButtonDown(cloak); }
             }
+            
         }
     }
+
 }
