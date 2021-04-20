@@ -61,7 +61,7 @@ public class Enemy : Target
 
 			if (followRange < 3 && !cooldown)
 			{
-				//_anim.SetBool("IsAttacking", true);
+				_anim.SetBool("IsAttacking", true);
 				//Attack();
 			}
 
@@ -91,7 +91,7 @@ public class Enemy : Target
 		stunTime -= Time.deltaTime;
 		if (stunTime <= 0)
 		{
-			//_anim.SetBool("IsWalking", true);
+			_anim.SetBool("IsWalking", true);
 			stunTime = 1;
 			stun = false;
 		}		
@@ -103,8 +103,8 @@ public class Enemy : Target
 		if (aggro && !stun)
 		{
 			followTarget = true;
-           // _anim.SetBool("IsRunning", true);
-           // _anim.SetBool("IsWalking", false);
+            _anim.SetBool("IsRunning", true);
+            _anim.SetBool("IsWalking", false);
 
 			
 			//player.position
@@ -130,15 +130,15 @@ public class Enemy : Target
 				if (Physics.Raycast(transform.position, Direction, out hit, followRange, wallMask))
 				{
 					followTarget = false;
-                   // _anim.SetBool("IsWalking", true);
-                   // _anim.SetBool("IsRunning", false);
+                    _anim.SetBool("IsWalking", true);
+                    _anim.SetBool("IsRunning", false);
 				}
 
 				else if (Physics.Raycast(transform.position, Direction, out hit, followRange, playerMask))
 				{
 					followTarget = true;
-                   // _anim.SetBool("IsRunning", true);
-                   // _anim.SetBool("IsWalking", false);
+                    _anim.SetBool("IsRunning", true);
+                    _anim.SetBool("IsWalking", false);
 					transform.rotation = Quaternion.LookRotation(lookplayer - transform.position);
 					transform.position += transform.forward * speed * Time.deltaTime;
 					Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -148,8 +148,8 @@ public class Enemy : Target
 				else
 				{
 					followTarget = false;
-                   // _anim.SetBool("IsWalking", true);
-                   // _anim.SetBool("IsRunning", false);
+                    _anim.SetBool("IsWalking", true);
+                    _anim.SetBool("IsRunning", false);
                 }
 
 			}
@@ -158,15 +158,15 @@ public class Enemy : Target
 
 			{
 				followTarget = false;
-               // _anim.SetBool("IsWalking", true);
-               // _anim.SetBool("IsRunning", false);
+                _anim.SetBool("IsWalking", true);
+                _anim.SetBool("IsRunning", false);
             }
 
 			if (!followTarget)
 			{
 				Waypoints();
-               //_anim.SetBool("IsWalking", true);
-               //_anim.SetBool("IsRunning", false);
+                _anim.SetBool("IsWalking", true);
+                _anim.SetBool("IsRunning", false);
 
 				rotation = new Vector3(waypoints[waypointIndex].position.x, transform.position.y, waypoints[waypointIndex].position.z);
 
@@ -190,8 +190,8 @@ public class Enemy : Target
 		_cooldowntime -= Time.deltaTime;
 		if (_cooldowntime <= 0)
 		{
-			//_anim.SetBool("IsAttacking", false);
-			//_anim.SetBool("IsWalking", true);
+			_anim.SetBool("IsAttacking", false);
+			_anim.SetBool("IsWalking", true);
 			cooldown = false;
 			_cooldowntime = cooldowntime;
 		}		
@@ -199,7 +199,7 @@ public class Enemy : Target
 
     public void Waypoints()
     {
-        if (Vector3.Distance(transform.position, rotation) <= 0.1f)
+        if (Vector3.Distance(transform.position, rotation) <= 0.25f)
         {
             waypointIndex++;
 
@@ -244,7 +244,7 @@ public class Enemy : Target
     {
 		stun = true;
         cooldown = true;
-		//_anim.SetBool("IsCooldown", true);
+		_anim.SetBool("IsCooldown", true);
 
         player.SendMessage("TakeDamage", damage);
     }

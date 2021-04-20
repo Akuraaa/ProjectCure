@@ -45,7 +45,7 @@ public class Target : MonoBehaviour
     {
 		if (_anim != null && isDead == false)
 		{
-			//_anim.SetTrigger("Die");
+			_anim.SetTrigger("Die");
 			isDead = true; 
 		}
         Destroy(gameObject, timeToDie);
