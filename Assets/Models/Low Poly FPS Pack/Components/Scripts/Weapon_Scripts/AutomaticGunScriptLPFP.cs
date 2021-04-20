@@ -585,12 +585,12 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 		AnimationCheck ();
 
 		//Play knife attack 1 animation when Q key is pressed
-		if (Input.GetKeyDown (KeyCode.Q) && !isInspecting) 
+		if (Input.GetKeyDown (KeyCode.F) && !isInspecting) 
 		{
 			anim.Play ("Knife Attack 1", 0, 0f);
 		}
 		//Play knife attack 2 animation when F key is pressed
-		if (Input.GetKeyDown (KeyCode.F) && !isInspecting) 
+		if (Input.GetKeyDown (KeyCode.X) && !isInspecting) 
 		{
 			anim.Play ("Knife Attack 2", 0, 0f);
 		}
@@ -752,33 +752,33 @@ public class AutomaticGunScriptLPFP : MonoBehaviour {
 		}
 
 		//Toggle weapon holster when E key is pressed
-		if (Input.GetKeyDown (KeyCode.E) && !hasBeenHolstered) 
-		{
-			holstered = true;
+		//if (Input.GetKeyDown (KeyCode.E) && !hasBeenHolstered) 
+		//{
+		//	holstered = true;
 
-			mainAudioSource.clip = SoundClips.holsterSound;
-			mainAudioSource.Play();
+		//	mainAudioSource.clip = SoundClips.holsterSound;
+		//	mainAudioSource.Play();
 
-			hasBeenHolstered = true;
-		} 
-		else if (Input.GetKeyDown (KeyCode.E) && hasBeenHolstered) 
-		{
-			holstered = false;
+		//	hasBeenHolstered = true;
+		//} 
+		//else if (Input.GetKeyDown (KeyCode.E) && hasBeenHolstered) 
+		//{
+		//	holstered = false;
 
-			mainAudioSource.clip = SoundClips.takeOutSound;
-			mainAudioSource.Play ();
+		//	mainAudioSource.clip = SoundClips.takeOutSound;
+		//	mainAudioSource.Play ();
 
-			hasBeenHolstered = false;
-		}
+		//	hasBeenHolstered = false;
+		//}
 		//Holster anim toggle
-		if (holstered == true) 
-		{
-			anim.SetBool ("Holster", true);
-		} 
-		else 
-		{
-			anim.SetBool ("Holster", false);
-		}
+		//if (holstered == true) 
+		//{
+		//	anim.SetBool ("Holster", true);
+		//} 
+		//else 
+		//{
+		//	anim.SetBool ("Holster", false);
+		//}
 
 		//Reload 
 		if (Input.GetKeyDown (KeyCode.R) && !isReloading && !isInspecting) 

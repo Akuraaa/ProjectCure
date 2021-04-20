@@ -13550,6 +13550,11 @@ MonoBehaviour:
     cloak: Cloak
   movementVector: {x: 0, y: -1.5, z: 0}
   healthText: {fileID: 0}
+  Cloak: {fileID: 0}
+  Dash: {fileID: 0}
+  SuperJump: {fileID: 0}
+  AlphaBloody: {fileID: 0}
+  habilities: {fileID: 0}
   cloakTimer: 5
   cloakMask:
     serializedVersion: 2
@@ -13557,7 +13562,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 256
-  dashForce: 100
+  dashForce: 200
   dashDuration: 0.2
   health: 100
 --- !u!114 &4188248386399297703

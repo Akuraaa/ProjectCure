@@ -12,6 +12,7 @@ TagManager:
   - Target
   - GasTank
   - FX
+  - Enemy
   layers:
   - Default
   - TransparentFX
