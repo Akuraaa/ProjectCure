@@ -7,7 +7,7 @@ ModelImporter:
       74: -203655887218126122
     second: mixamo.com
   - first:
-      74: -3780516532778130023
+      74: -1477732079505054560
     second: Z_Run
   externalObjects: {}
   materials:
@@ -38,7 +38,8 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - Root
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
@@ -86,7 +87,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -103,8 +104,8 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 2
-    addColliders: 1
+    meshCompression: 0
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
