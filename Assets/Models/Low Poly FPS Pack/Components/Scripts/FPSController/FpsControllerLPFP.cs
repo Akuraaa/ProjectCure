@@ -5,8 +5,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace FPSControllerLPFP
-{
     /// Manages a first person character
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
@@ -547,5 +545,3 @@ namespace FPSControllerLPFP
             
         }
     }
-
-}
