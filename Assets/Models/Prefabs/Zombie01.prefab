@@ -168,10 +168,10 @@ GameObject:
   - component: {fileID: 4279131312261084716}
   - component: {fileID: 4192935468210799548}
   - component: {fileID: 4192935468210799545}
-  - component: {fileID: 4192935468210799544}
-  - component: {fileID: 4192935468210799543}
   - component: {fileID: 4192935468210799546}
   - component: {fileID: 4192935468210799547}
+  - component: {fileID: 3715571938138754814}
+  - component: {fileID: 1066877350050466812}
   m_Layer: 0
   m_Name: Zombie01
   m_TagString: Enemy
@@ -326,47 +326,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4192935468210799544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4192935468210799542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9397a396c88d85645888439466289f4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  _audio: {fileID: 4192935468210799545}
-  _receiveDamage: {fileID: 8300000, guid: 81f08cc90f92bab43a21815c99f6194f, type: 3}
-  _isDead: 0
-  timeToDie: 0
-  parentScript: {fileID: 4192935468210799543}
-  damage: 20
-  speed: 4
-  timeToAggro: 0
-  player: {fileID: 0}
-  waypoints: []
-  cooldowntime: 1
---- !u!114 &4192935468210799543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4192935468210799542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3960343424f0324eb1e966a56760c8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  _audio: {fileID: 4192935468210799545}
-  _receiveDamage: {fileID: 8300000, guid: 81f08cc90f92bab43a21815c99f6194f, type: 3}
-  _isDead: 0
-  timeToDie: 0
 --- !u!136 &4192935468210799546
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -395,6 +354,54 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &3715571938138754814
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192935468210799542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1066877350050466812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192935468210799542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07334f7a6419b747bed16b3789a9574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  radius: 10
+  hp: 100
+  minIdleTime: 3
+  maxIdleTime: 5
+  fireRate: 1.5
+  viewAngle: 100
+  distanceToAttack: 1
+  _lm:
+    serializedVersion: 2
+    m_Bits: 311
+  player: {fileID: 0}
+  waypoints: []
+  currentWaypointTarget: 0
+  playerInRange: 0
+  playerInSight: 0
+  view: 0
+  die: 0
+  _anim: {fileID: 4279131312261084716}
+  visionRange: {fileID: 3715571938138754814}
+  audioSource: {fileID: 4192935468210799545}
+  receiveDamage: {fileID: 8300000, guid: 81f08cc90f92bab43a21815c99f6194f, type: 3}
+  attackSound: {fileID: 0}
 --- !u!1 &4192953229055586136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1282,7 @@ GameObject:
   - component: {fileID: 4190499870718158988}
   - component: {fileID: 4310204664886043788}
   m_Layer: 0
-  m_Name: Zombie_Businessman_Male_01
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

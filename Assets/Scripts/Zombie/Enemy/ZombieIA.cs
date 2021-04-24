@@ -31,15 +31,23 @@ public class ZombieIA : MonoBehaviour
     public AudioClip receiveDamage, attackSound;
 
     public StateMachine sm;
+    public EnemyDecisionTree zombieTree;
 
     void Awake()
     {
         sm = new StateMachine();
+        zombieTree = new EnemyDecisionTree(this);
         visionRange = GetComponent<SphereCollider>();
         _anim = GetComponent<Animator>();
         player = FindObjectOfType<FpsControllerLPFP>();
         audioSource = GetComponent<AudioSource>();
         radius = GetComponent<SphereCollider>().radius;
+        zombieTree.SetNodes();
+    }
+
+    private void Start()
+    {
+        zombieTree._init.Execute();
     }
 
     void Update()
@@ -66,13 +74,14 @@ public class ZombieIA : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(other.GetComponent<FpsControllerLPFP>())
+        if(other.GetComponent<FpsControllerLPFP>() && !die)
         {
             playerInRange = true;
             player = other.GetComponent<FpsControllerLPFP>();
-            
+            LineOfSight();
+            zombieTree._init.Execute();
         }
     }
 
@@ -82,6 +91,7 @@ public class ZombieIA : MonoBehaviour
         {
             playerInRange = false;
             playerInSight = false;
+            zombieTree._init.Execute();
         }
     }
 
@@ -107,7 +117,7 @@ public class ZombieIA : MonoBehaviour
 
     public void OnAnimatorAttack()
     {
-        audioSource.PlayOneShot(attackSound);
+        //audioSource.PlayOneShot(attackSound);
     }
 
     public void ActionAttack()
@@ -128,6 +138,11 @@ public class ZombieIA : MonoBehaviour
     public void ActionIdle()
     {
         sm.SetState<ZombieIdleState>();
+    }
+
+    public void ActionDie()
+    {
+        sm.SetState<ZombieDieState>();
     }
 
     public bool QuestionAttackRange()
