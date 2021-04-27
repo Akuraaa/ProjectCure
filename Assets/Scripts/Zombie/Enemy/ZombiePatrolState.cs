@@ -20,6 +20,7 @@ public class ZombiePatrolState : ZombieState
         base.Execute();
         Transform target = _zombie.waypoints[_zombie.currentWaypointTarget];
         _zombie.transform.LookAt(target);
+        _zombie.transform.position += _zombie.transform.forward * _zombie.speed * Time.deltaTime;
 
         if (Vector3.Distance(_zombie.transform.position, target.position) < .5)
         {

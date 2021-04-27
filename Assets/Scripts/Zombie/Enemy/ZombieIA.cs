@@ -42,7 +42,7 @@ public class ZombieIA : MonoBehaviour
         sm = new StateMachine();
         sm.AddState(new ZombieAttackState(sm, this));
         sm.AddState(new ZombieDieState(sm, this));
-        sm.AddState(new ZombieIdleState(sm, this));
+        //sm.AddState(new ZombieIdleState(sm, this));
         sm.AddState(new ZombieSeekState(sm, this));
         sm.AddState(new ZombiePatrolState(sm, this));
         visionRange = GetComponent<SphereCollider>();
@@ -85,6 +85,10 @@ public class ZombieIA : MonoBehaviour
                     viewAngle /= 1.5f;
                 }
             }
+        }
+        else
+        {
+            sm.SetState<ZombieDieState>();
         }
     }
 
@@ -140,7 +144,7 @@ public class ZombieIA : MonoBehaviour
         }
         else
         {
-            //die = true;
+            die = true;
         }
 
     }
@@ -164,10 +168,10 @@ public class ZombieIA : MonoBehaviour
         sm.SetState<ZombiePatrolState>();
     }
 
-    public void ActionIdle()
-    {
-        sm.SetState<ZombieIdleState>();
-    }
+    //public void ActionIdle()
+    //{
+    //    sm.SetState<ZombieIdleState>();
+    //}
 
     public void ActionDie()
     {
@@ -187,7 +191,7 @@ public class ZombieIA : MonoBehaviour
 
     public bool QuestionHaveLife()
     {
-        if (hp <= 0 && haveLife)
+        if (hp <= 0)
         {
             die = true;
         }

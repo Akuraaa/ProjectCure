@@ -26,6 +26,7 @@ public class ZombieSeekState : ZombieState
         RaycastHit ray;
         target = _zombie.player.transform;
         _zombie.transform.LookAt(target);
+        _zombie.transform.position += _zombie.transform.forward * _zombie.speed * Time.deltaTime;
         if (Physics.Raycast(_zombie.transform.position, _zombie.transform.forward, out ray, obstacleAvoidanceDistance))
         {
             for (int i = 10; i <= 180; i += 10)

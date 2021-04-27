@@ -334,7 +334,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4192935468210799542}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
   m_Height: 1.85
@@ -348,12 +348,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4192935468210799542}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.2
+  m_Height: 1.85
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.0031635463, y: 0.9169955, z: 0}
 --- !u!135 &3715571938138754814
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -397,11 +397,14 @@ MonoBehaviour:
   playerInSight: 0
   view: 0
   die: 0
+  haveLife: 0
   _anim: {fileID: 4279131312261084716}
   visionRange: {fileID: 3715571938138754814}
   audioSource: {fileID: 4192935468210799545}
   receiveDamage: {fileID: 8300000, guid: 81f08cc90f92bab43a21815c99f6194f, type: 3}
   attackSound: {fileID: 0}
+  zombieMat: {fileID: 0}
+  bloodAmount: 0
   zombieTree: {fileID: 0}
 --- !u!1 &4192953229055586136
 GameObject:
@@ -1320,7 +1323,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5545c89bb0a75004bbe217d139a97e89, type: 2}
+  - {fileID: 2100000, guid: cfa76d33a1f62c54ba2a20e8cd353d9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

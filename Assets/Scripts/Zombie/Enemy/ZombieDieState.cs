@@ -13,6 +13,7 @@ public class ZombieDieState : ZombieState
     public override void Awake()
     {
         base.Awake();
+        _zombie.speed = 0;
         _zombie._anim.SetTrigger("Die");
         //_zombie.die = true;
     }

@@ -195,7 +195,7 @@ MonoBehaviour:
   - {fileID: 4522298916909980, guid: 7178009a59b47d44385e833bda688e76, type: 3}
   concreteImpactPrefabs:
   - {fileID: 4587651611338842, guid: 5e02303289b3c494e8e185be0fbbd405, type: 3}
-  damage: 0
+  damage: 10
 --- !u!1 &1231345400216816
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,30 +16,6 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void Update()
     {
-        int previousSelectedWeapon = selectedWeapon;
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        {
-            if (selectedWeapon >= transform.childCount - 1)
-            {
-                selectedWeapon = 0;
-            }
-            else
-            {
-                selectedWeapon++;
-            }
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            if (selectedWeapon <= 0)
-            {
-                selectedWeapon = transform.childCount - 1;
-            }
-            else
-            {
-                selectedWeapon--;
-            }
-        }
-
         foreach (var gun in guns)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -59,11 +35,6 @@ public class WeaponSwitcher : MonoBehaviour
                 StartCoroutine(changeWeapon());
                 guns[0].gameObject.SetActive(false);
             }
-        }
-
-        if (previousSelectedWeapon != selectedWeapon)
-        {
-            SelectWeapon();
         }
     }
 
