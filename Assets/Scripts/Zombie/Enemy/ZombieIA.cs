@@ -6,7 +6,7 @@ public class ZombieIA : MonoBehaviour
 {
     public float speed;
     public float radius;
-    public int hp;
+    public int hp = 100;
 
     public float minIdleTime = 3;
     public float maxIdleTime = 5;
@@ -24,11 +24,15 @@ public class ZombieIA : MonoBehaviour
     public bool playerInSight = false;
     public bool view;
     public bool die;
+    public bool haveLife;
 
     public Animator _anim;
     public SphereCollider visionRange;
     public AudioSource audioSource;
     public AudioClip receiveDamage, attackSound;
+
+    public Material zombieMat;
+    public float bloodAmount;
 
     public StateMachine sm;
     public EnemyDecisionTree zombieTree;
@@ -36,24 +40,34 @@ public class ZombieIA : MonoBehaviour
     void Awake()
     {
         sm = new StateMachine();
-        zombieTree = new EnemyDecisionTree(this);
+        sm.AddState(new ZombieAttackState(sm, this));
+        sm.AddState(new ZombieDieState(sm, this));
+        sm.AddState(new ZombieIdleState(sm, this));
+        sm.AddState(new ZombieSeekState(sm, this));
+        sm.AddState(new ZombiePatrolState(sm, this));
         visionRange = GetComponent<SphereCollider>();
         _anim = GetComponent<Animator>();
         player = FindObjectOfType<FpsControllerLPFP>();
         audioSource = GetComponent<AudioSource>();
-        radius = GetComponent<SphereCollider>().radius;
+        zombieTree = new EnemyDecisionTree(this);
         zombieTree.SetNodes();
+        die = false;
+        
     }
 
     private void Start()
     {
         zombieTree._init.Execute();
+        radius = GetComponent<SphereCollider>().radius;
     }
 
     void Update()
     {
+        bloodAmount = Mathf.Lerp(0, 1, hp);
+        zombieMat.SetFloat("BloodAmount", bloodAmount);
         if (!die)
         {
+            haveLife = true;
             sm.Update();
             if (view)
             {
@@ -115,6 +129,21 @@ public class ZombieIA : MonoBehaviour
         return playerInSight;
     }
 
+
+    public void ReceiveDamage(int damage)
+    {
+        if (hp >= 0)
+        {
+            hp -= damage;
+            //audioSource.playOneShot();
+            _anim.Play("Zombie_ReceiveDamage", 0, 0);
+        }
+        else
+        {
+            //die = true;
+        }
+
+    }
     public void OnAnimatorAttack()
     {
         //audioSource.PlayOneShot(attackSound);
@@ -158,6 +187,10 @@ public class ZombieIA : MonoBehaviour
 
     public bool QuestionHaveLife()
     {
-        return die;
+        if (hp <= 0 && haveLife)
+        {
+            die = true;
+        }
+        return haveLife;
     }
 }
