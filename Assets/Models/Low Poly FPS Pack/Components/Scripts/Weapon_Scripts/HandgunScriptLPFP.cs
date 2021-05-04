@@ -459,12 +459,12 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		}
 			
 		//Throw grenade when pressing G key
-		if (Input.GetKeyDown (KeyCode.G) && !isInspecting) 
-		{
-			StartCoroutine (GrenadeSpawnDelay ());
-			//Play grenade throw animation
-			anim.Play("GrenadeThrow", 0, 0.0f);
-		}
+		//if (Input.GetKeyDown (KeyCode.G) && !isInspecting) 
+		//{
+		//	StartCoroutine (GrenadeSpawnDelay ());
+		//	//Play grenade throw animation
+		//	anim.Play("GrenadeThrow", 0, 0.0f);
+		//}
 
 		//If out of ammo
 		if (currentAmmo == 0) 

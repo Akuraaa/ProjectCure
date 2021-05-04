@@ -80,7 +80,7 @@ public class FpsControllerLPFP : MonoBehaviour
     public bool _isGrounded;
     private bool onPause;
     public bool gameCondition;
-    
+    private Color tempColor;
     private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
     private readonly RaycastHit[] _wallCastResults = new RaycastHit[8];
     
@@ -89,6 +89,11 @@ public class FpsControllerLPFP : MonoBehaviour
     
     private void Start()
     {
+        tempColor = bloodyScreen.color;
+        tempColor.a = 1;
+        bloodyScreen.color = tempColor;
+        bloodyScreen.enabled = false;
+
         gameCondition = true;
         onPause = false;
         _rigidbody = GetComponent<Rigidbody>();
@@ -156,7 +161,17 @@ public class FpsControllerLPFP : MonoBehaviour
     
         _isGrounded = true;
     }
-	 	
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 13)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            SceneManager.LoadScene("Win");
+        }
+    }
+
     private void FixedUpdate()
     {
         RotateCameraAndCharacter();
@@ -170,6 +185,8 @@ public class FpsControllerLPFP : MonoBehaviour
     
     private void Update()
     {
+        healthText.text = health.ToString();
+
         if (wpSwitcher.pistol)
         {
             arms = wpSwitcher.guns[0];

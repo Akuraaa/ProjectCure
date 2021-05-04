@@ -127,27 +127,28 @@ public class BulletScript : MonoBehaviour {
 			//Destroy bullet object
 			Destroy(gameObject);
 		}
+
+		if (collision.transform.gameObject.GetComponent<Target>())
+		{
+			Instantiate(bloodImpactPrefabs[Random.Range
+				(0, bloodImpactPrefabs.Length)], transform.position,
+				Quaternion.LookRotation(collision.contacts[0].normal));
+			collision.transform.GetComponent<Target>().TakeDamage(damage);
+		}
 	}
 
-    //   private void OnTriggerEnter(Collider other)
-    //   {
-    //       if (other.transform.gameObject.GetComponent<Target>())
-    //       {
-    //		Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], this.gameObject.transform.position,
-    //			Quaternion.identity);
-    //		other.GetComponent<Target>().TakeDamage(damage);
-    //		Destroy(gameObject);
-    //       }
+	//oncollisi
 
-    //}
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.gameObject.GetComponent<Target>())
-        {
-			other.transform.GetComponent<Target>().TakeDamage(damage);
-        }
-    }
+ //   private void OnTriggerEnter(Collider other)
+ //   {
+ //       if (other.transform.gameObject.GetComponent<Target>())
+ //       {
+	//		Instantiate(bloodImpactPrefabs[Random.Range
+	//			(0, bloodImpactPrefabs.Length)], transform.position,
+	//			Quaternion.identity);
+	//		other.transform.GetComponent<Target>().TakeDamage(damage);
+ //       }
+ //   }
 
     private IEnumerator DestroyTimer () 
 	{

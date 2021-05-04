@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class Menu : MonoBehaviour
     public GameObject controls;
     public GameObject credits;
     public GameObject exit;
-    public Text Control;
-    public Text Credit;
+    public TMP_Text Control;
+    public TMP_Text Credit;
 
     void Start()
     {

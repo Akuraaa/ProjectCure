@@ -128,30 +128,30 @@ public class CharacterAbilities : MonoBehaviour
         {
             isCloak = true;
             cloakImg.fillAmount = 0;
+            transform.gameObject.layer = 10;
+            foreach (var mat in armsMaterial)
+            {
+                mat.SetFloat("_Transparency", .5f);
+            }
         }
 
         if (isCloak)
         {
             cloakTime -= Time.time;
-            gameObject.layer = cloakMask;
-            foreach (var mat in armsMaterial)
-            {
-                mat.SetFloat("_Transparency", .5f);
-            }
             if (cloakTime <= 0)
             {
-                gameObject.layer = playerMask;
+                transform.gameObject.layer = 8;
                 foreach (var mat in armsMaterial)
                 {
                     mat.SetFloat("_Transparency", 0);
                 }
-                cloakTime = _cloakTime;
             }
             cloakImg.fillAmount += 1 / cloakCooldown * Time.deltaTime;
             if (cloakImg.fillAmount >= 1)
             {
                 cloakImg.fillAmount = 1;
                 isCloak = false;
+                cloakTime = _cloakTime;
             }
         }
     }
