@@ -143,9 +143,9 @@ public class BulletScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.gameObject.GetComponent<ZombieIA>())
+        if (other.transform.gameObject.GetComponent<Target>())
         {
-			other.GetComponent<ZombieIA>().ReceiveDamage(damage);
+			other.transform.GetComponent<Target>().TakeDamage(damage);
         }
     }
 
