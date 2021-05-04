@@ -13363,9 +13363,10 @@ GameObject:
   - component: {fileID: 7815998536571657997}
   - component: {fileID: 4291834256058601322}
   - component: {fileID: 4188248386399297703}
+  - component: {fileID: 499132439}
   m_Layer: 8
   m_Name: FPSController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13550,20 +13551,11 @@ MonoBehaviour:
     cloak: Cloak
   movementVector: {x: 0, y: -1.5, z: 0}
   healthText: {fileID: 0}
-  Cloak: {fileID: 0}
-  Dash: {fileID: 0}
-  SuperJump: {fileID: 0}
-  AlphaBloody: {fileID: 0}
-  habilities: {fileID: 0}
-  cloakTimer: 5
-  cloakMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  dashForce: 200
-  dashDuration: 0.2
+  bloodyScreen: {fileID: 0}
+  _rigidbody: {fileID: 0}
+  _audioSource: {fileID: 4268638313271189984}
+  _isGrounded: 0
+  gameCondition: 0
   health: 100
 --- !u!114 &4188248386399297703
 MonoBehaviour:
@@ -13583,6 +13575,43 @@ MonoBehaviour:
   - {fileID: 4185577930532364640}
   m4: 0
   pistol: 0
+--- !u!114 &499132439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188248386399297702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8554b9102bfce474db4b0e36a8a0877a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  isSuperJump: 0
+  superJumpForce: 10
+  superJumpCooldown: 5
+  superJumpImg: {fileID: 0}
+  superJumpClip: {fileID: 8300000, guid: e3c2da43c3416694095a554c3b596984, type: 3}
+  dashVector: {x: 0, y: 0, z: 0}
+  isDash: 0
+  dashForce: 700
+  dashCooldown: 10
+  dashImg: {fileID: 0}
+  dashClip: {fileID: 8300000, guid: 7aedeaf655fc4254dbc303e0653deed3, type: 3}
+  isCloak: 0
+  cloakTime: 5
+  cloakCooldown: 40
+  cloakMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  armsMaterial:
+  - {fileID: 2100000, guid: a5c25d33ff4fb084f90ccf3f0b3659b2, type: 2}
+  - {fileID: 2100000, guid: e11c4f3ee458bf446918382a2f5f9451, type: 2}
+  cloakImg: {fileID: 0}
 --- !u!1 &4188257140006296056
 GameObject:
   m_ObjectHideFlags: 0
@@ -14517,12 +14546,12 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5387706424050047792}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_CastShadows: 2
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_ReflectionProbeUsage: 3
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14550,7 +14579,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
-  m_SkinnedMotionVectors: 1
+  m_SkinnedMotionVectors: 0
   m_Mesh: {fileID: 4300000, guid: 56ec0b9a5b8762642811ea26a5242e04, type: 3}
   m_Bones:
   - {fileID: 5390619662747035532}

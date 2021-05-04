@@ -20,15 +20,15 @@ public class ZombieIA : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
     public int currentWaypointTarget = 0;
 
-    public bool playerInRange = false;
-    public bool playerInSight = false;
-    public bool view;
-    public bool die;
-    public bool haveLife;
+    private bool playerInRange = false;
+    private bool playerInSight = false;
+    private bool view;
+    private bool die;
+    private bool haveLife;
 
     public Animator _anim;
-    public SphereCollider visionRange;
-    public AudioSource audioSource;
+    private SphereCollider visionRange;
+    private AudioSource audioSource;
     public AudioClip receiveDamage, attackSound;
 
     public Material zombieMat;
@@ -59,6 +59,7 @@ public class ZombieIA : MonoBehaviour
     {
         zombieTree._init.Execute();
         radius = GetComponent<SphereCollider>().radius;
+        GetComponent<SphereCollider>().enabled = false;
     }
 
     void Update()
@@ -99,7 +100,7 @@ public class ZombieIA : MonoBehaviour
             playerInRange = true;
             player = other.GetComponent<FpsControllerLPFP>();
             LineOfSight();
-            zombieTree._init.Execute();
+            //zombieTree._init.Execute();
         }
     }
 

@@ -168,10 +168,10 @@ GameObject:
   - component: {fileID: 4279131312261084716}
   - component: {fileID: 4192935468210799548}
   - component: {fileID: 4192935468210799545}
-  - component: {fileID: 4192935468210799546}
-  - component: {fileID: 4192935468210799547}
   - component: {fileID: 3715571938138754814}
   - component: {fileID: 1066877350050466812}
+  - component: {fileID: 299091065892932889}
+  - component: {fileID: 8017403005617890259}
   m_Layer: 0
   m_Name: Zombie01
   m_TagString: Enemy
@@ -326,34 +326,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!136 &4192935468210799546
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4192935468210799542}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.85
-  m_Direction: 1
-  m_Center: {x: 0.0031635463, y: 0.9169955, z: 0}
---- !u!136 &4192935468210799547
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4192935468210799542}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.2
-  m_Height: 1.85
-  m_Direction: 1
-  m_Center: {x: 0.0031635463, y: 0.9169955, z: 0}
 --- !u!135 &3715571938138754814
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -403,9 +375,37 @@ MonoBehaviour:
   audioSource: {fileID: 4192935468210799545}
   receiveDamage: {fileID: 8300000, guid: 81f08cc90f92bab43a21815c99f6194f, type: 3}
   attackSound: {fileID: 0}
-  zombieMat: {fileID: 0}
+  zombieMat: {fileID: 2100000, guid: cfa76d33a1f62c54ba2a20e8cd353d9e, type: 2}
   bloodAmount: 0
   zombieTree: {fileID: 0}
+--- !u!64 &299091065892932889
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192935468210799542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300040, guid: b20a3c10714a6ac439af479e3273de65, type: 3}
+--- !u!64 &8017403005617890259
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4192935468210799542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300040, guid: b20a3c10714a6ac439af479e3273de65, type: 3}
 --- !u!1 &4192953229055586136
 GameObject:
   m_ObjectHideFlags: 0
