@@ -6,8 +6,6 @@ public class Enemy : Target
 {
 
 	public Target parentScript;
-
-	public float damage = 20;
 	public float speed = 4f;
 
 	private bool aggro;
@@ -15,7 +13,7 @@ public class Enemy : Target
 
 	private Vector3 Direction;
 	public Transform player;
-	public FpsControllerLPFP character;
+	public PlayerController character;
 	public Transform[] waypoints;
 	private int waypointIndex = 0;
 
@@ -252,6 +250,6 @@ public class Enemy : Target
 		//_anim.SetBool("IsCooldown", true);
 
 		//player.SendMessage("TakeDamage", damage);
-		player.GetComponent<FpsControllerLPFP>().SendMessage("TakeDamage", damage);
+		player.GetComponent<PlayerController>().SendMessage("TakeDamage", damage);
 	}
 }

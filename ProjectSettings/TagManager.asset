@@ -9,9 +9,7 @@ TagManager:
   - Dirt
   - Concrete
   - ExplosiveBarrel
-  - Target
   - GasTank
-  - FX
   - Enemy
   layers:
   - Default

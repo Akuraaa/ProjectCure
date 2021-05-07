@@ -15,7 +15,7 @@ public class ZombieIA : MonoBehaviour
     public float distanceToAttack;
     public LayerMask _lm;
 
-    public FpsControllerLPFP player;
+    public PlayerController player;
 
     public List<Transform> waypoints = new List<Transform>();
     public int currentWaypointTarget = 0;
@@ -47,7 +47,7 @@ public class ZombieIA : MonoBehaviour
         sm.AddState(new ZombiePatrolState(sm, this));
         visionRange = GetComponent<SphereCollider>();
         _anim = GetComponent<Animator>();
-        player = FindObjectOfType<FpsControllerLPFP>();
+        player = FindObjectOfType<PlayerController>();
         audioSource = GetComponent<AudioSource>();
         zombieTree = new EnemyDecisionTree(this);
         zombieTree.SetNodes();
@@ -95,10 +95,10 @@ public class ZombieIA : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.GetComponent<FpsControllerLPFP>() && !die)
+        if(other.GetComponent<PlayerController>() && !die)
         {
             playerInRange = true;
-            player = other.GetComponent<FpsControllerLPFP>();
+            player = other.GetComponent<PlayerController>();
             LineOfSight();
             //zombieTree._init.Execute();
         }
@@ -106,7 +106,7 @@ public class ZombieIA : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<FpsControllerLPFP>())
+        if (other.GetComponent<PlayerController>())
         {
             playerInRange = false;
             playerInSight = false;

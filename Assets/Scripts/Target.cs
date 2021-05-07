@@ -3,6 +3,7 @@
 public class Target : MonoBehaviour
 {
     public int health;
+    public float damage;
     private int currentHealth;
     protected Animator _anim;
     public AudioSource _audio;
@@ -12,42 +13,51 @@ public class Target : MonoBehaviour
 	private bool isDead;
 	public float timeToDie;
 
-    private void Awake()
-    {
-        currentHealth = health;
-        _anim = GetComponent<Animator>();
-	}
+ //   private void Awake()
+ //   {
+ //       currentHealth = health;
+ //       _anim = GetComponent<Animator>();
+	//}
 	
 
-    public virtual void TakeDamage(int amount)
-    {
-        if (health > 0)
-        {
-            health -= amount;
-			if(_audio != null)
-			{
-				_audio.PlayOneShot(_receiveDamage);
-			}
-			if(_anim != null)
-			{
-				_anim.Play("ReceiveDamage", 0, 0);
-			}
-        }
+     public virtual void TakeDamage(int amount)
+     {
+         if (health > 0)
+         {
+             health -= amount;
+             if(_audio != null)
+             {
+             	_audio.PlayOneShot(_receiveDamage);
+             }
+             if(_anim != null)
+             {
+             	_anim.Play("ReceiveDamage", 0, 0);
+             }
+         }
+    
+         if (health <= 0)
+         {
+            _isDead = true;
+            Die();
+         }
+     }
+    
+     public virtual void Die()
+     {
+    	//if (_anim != null && isDead == false)
+    	//{
+    	//	_anim.SetTrigger("Die");
+    	//	isDead = true; 
+    	//}
+         Destroy(gameObject, timeToDie);
+     }
 
-        if (health <= 0)
-        {
-			_isDead = true;
-			Die();
-        }
-    }
-
-    public virtual void Die()
+    private void OnTriggerEnter(Collider other)
     {
-		if (_anim != null && isDead == false)
-		{
-			_anim.SetTrigger("Die");
-			isDead = true; 
-		}
-        Destroy(gameObject, timeToDie);
+        if (other.gameObject.GetComponent<PlayerStats>())
+        {
+            other.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
+            other.gameObject.GetComponent<PlayerStats>().hitPlayer = true;
+        }
     }
 }
