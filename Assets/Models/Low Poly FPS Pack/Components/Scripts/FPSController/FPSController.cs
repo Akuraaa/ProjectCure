@@ -321,6 +321,7 @@ public class FPSController : MonoBehaviour
          }
      }
     
+
      /// Input mappings
      [Serializable]
      private class FpsInput

@@ -13,13 +13,6 @@ public class Target : MonoBehaviour
 	private bool isDead;
 	public float timeToDie;
 
- //   private void Awake()
- //   {
- //       currentHealth = health;
- //       _anim = GetComponent<Animator>();
-	//}
-	
-
      public virtual void TakeDamage(int amount)
      {
          if (health > 0)
@@ -44,11 +37,6 @@ public class Target : MonoBehaviour
     
      public virtual void Die()
      {
-    	//if (_anim != null && isDead == false)
-    	//{
-    	//	_anim.SetTrigger("Die");
-    	//	isDead = true; 
-    	//}
          Destroy(gameObject, timeToDie);
      }
 

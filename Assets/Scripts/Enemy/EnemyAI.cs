@@ -10,7 +10,6 @@ public class EnemyAI : MonoBehaviour
     public float viewAngle = 45;
     public float distanceToShoot;
     public LayerMask _lm;
-    public bool hack;
     public bool view;
     public float radius;
 
@@ -18,7 +17,7 @@ public class EnemyAI : MonoBehaviour
 
     public Transform bulletSpawn;
     public GameObject bulletPrefab;
-    public PlayerController player;
+    public FPSController player;
 
     public List<Transform> waypoints = new List<Transform>();
     public int currentWaypointTarget = 0;
@@ -27,12 +26,11 @@ public class EnemyAI : MonoBehaviour
     public bool playerInSight = false;
 
     public Animator animator;
-    public SphereCollider visionRange;
 
     public StateMachine sm;
     public EnemyDecisionTree enemyTree;
     public AudioSource audioSource;
-    public AudioClip shootSound;
+    public AudioClip attackSound;
 
     void Awake()
     {
@@ -41,9 +39,8 @@ public class EnemyAI : MonoBehaviour
         sm.AddState(new EnemyIdleState(sm, this));
         sm.AddState(new EnemyShootState(sm, this));
         sm.AddState(new EnemySeekState(sm, this));
-        visionRange = GetComponent<SphereCollider>();
         animator = GetComponent<Animator>();
-        player = FindObjectOfType<PlayerController>();
+        player = FindObjectOfType<FPSController>();
         enemyTree = new EnemyDecisionTree(this);
         enemyTree.SetNodes();
     }
@@ -51,7 +48,6 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         enemyTree._init.Execute();
-        radius = GetComponent<SphereCollider>().radius;
     }
 
     void Update()
@@ -59,28 +55,22 @@ public class EnemyAI : MonoBehaviour
         sm.Update();
         if (view)
         {
-            if (GetComponent<SphereCollider>().radius < radius * 2)
-            {
-                GetComponent<SphereCollider>().radius *= 2;
+                radius *= 2;
                 viewAngle *= 1.5f;
-            }
         }
         else
         {
-            if (GetComponent<SphereCollider>().radius == radius * 2)
-            {
-                GetComponent<SphereCollider>().radius /= 2;
+                radius /= 2;
                 viewAngle /= 1.5f;
-            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<PlayerController>() && !hack)
+        if (other.GetComponent<FPSController>())
         {
             playerInRange = true;
-            player = other.GetComponent<PlayerController>();
+            player = other.GetComponent<FPSController>();
             LineOfSight();
             enemyTree._init.Execute();
         }
@@ -88,7 +78,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerController>()&&!hack)
+        if (other.GetComponent<FPSController>())
         {
             playerInRange = false;
             playerInSight = false;
@@ -96,10 +86,10 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void OnAnimatorShoot()
+    public void OnAnimatorRangeAttack()
     {
-        audioSource.PlayOneShot(shootSound);
-        Bullet bullet = Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation).GetComponent<Bullet>();
+        audioSource.PlayOneShot(attackSound);
+        BulletScript bullet = Object.Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation).GetComponent<BulletScript>();
         bullet.transform.up = bulletSpawn.forward;
     }
 
@@ -109,7 +99,7 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle)
         {
             RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(transform.position, dirToPlayer, out hit, visionRange.radius, _lm))
+            if (Physics.Raycast(transform.position, dirToPlayer, out hit, radius, _lm))
             {
                 playerInSight = hit.transform.gameObject.layer == 8;
             }

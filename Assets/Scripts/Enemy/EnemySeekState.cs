@@ -14,13 +14,12 @@ public class EnemySeekState : EnemyState
     public override void Awake()
     {
         base.Awake();
-        _enemy.animator.SetFloat("AngularSpeed", 0);
+        _enemy.animator.SetBool("IsWalking", true);
     }
 
     public override void Execute()
     {
         base.Execute();
-        _enemy.animator.SetFloat("Speed", _enemy.speed* 40);
         avoidance = Vector3.zero;
         float minDistance = obstacleAvoidanceDistance;
         RaycastHit ray;

@@ -13,7 +13,7 @@ public class Enemy : Target
 
 	private Vector3 Direction;
 	public Transform player;
-	public PlayerController character;
+	public FPSController character;
 	public Transform[] waypoints;
 	private int waypointIndex = 0;
 
@@ -22,8 +22,6 @@ public class Enemy : Target
 	private float _followRange;
 
 	private float attackRange;
-
-
 	private bool getRotation;
 
 	int playerMask = 1 << 8;
@@ -250,6 +248,6 @@ public class Enemy : Target
 		//_anim.SetBool("IsCooldown", true);
 
 		//player.SendMessage("TakeDamage", damage);
-		player.GetComponent<PlayerController>().SendMessage("TakeDamage", damage);
+		player.GetComponent<FPSController>().SendMessage("TakeDamage", damage);
 	}
 }
