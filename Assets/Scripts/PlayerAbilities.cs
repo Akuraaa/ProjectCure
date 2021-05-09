@@ -6,7 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerAbilities : MonoBehaviour
 {
-    private PlayerController player;
+    private FPSController player;
 
     [Header("Updraft")]
     public bool isUpdrafting;
@@ -24,7 +24,7 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField] private AudioClip dashSound;
     [SerializeField] private Image dashUI;
 
-
+    private bool fward, bward, left, right;
     [SerializeField] private ParticleSystem forwardDash, backwardDash, leftDash, rightDash, updraftParticle;
 
     [Header("Invisibility")]
@@ -50,7 +50,7 @@ public class PlayerAbilities : MonoBehaviour
         _invisibilityTime = invisibilityTime;
 
         _audio = GetComponent<AudioSource>();
-        player = GetComponent<PlayerController>();
+        player = GetComponent<FPSController>();
         abilitieNotReadyColor = new Color(.3f, .009f, .15f, .5f);
         abilitieReadyColor = new Color(1, 1, 1, 1);
     }
@@ -68,7 +68,8 @@ public class PlayerAbilities : MonoBehaviour
         {
             _audio.PlayOneShot(updraftSound);
             updraftParticle.Play();
-            player._velocity.y = Mathf.Sqrt(updraftForce * -2f * player._gravity);
+            player.GetComponent<Rigidbody>().AddForce(Vector3.up * updraftForce, ForceMode.Impulse);
+            //player._velocity.y = Mathf.Sqrt(updraftForce * -2f * player._gravity);
             isUpdrafting = true;
             updraftUI.fillAmount = 0;
             updraftUI.color = abilitieNotReadyColor;
@@ -127,48 +128,62 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
+            fward = true;
+            bward = false;
+            left = false;
+            right = false;
             dashVector = transform.forward * dashForce;
-            dashVector.y = 0;
         }
         else if (Input.GetKey(KeyCode.S))
         {
+            fward = false;
+            bward = true;
+            left = false;
+            right = false;
             dashVector = -transform.forward * dashForce;
-            dashVector.y = 0;
         }
         else if (Input.GetKey(KeyCode.A))
         {
+            fward = false;
+            bward = false;
+            left = true;
+            right = false;
             dashVector = -transform.right * dashForce;
-            dashVector.y = 0;
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            fward = false;
+            bward = false;
+            left = false;
+            right = true;
             dashVector = transform.right * dashForce;
-            dashVector.y = 0;
         }
         else
         {
+            fward = true;
+            bward = false;
+            left = false;
+            right = false;
             dashVector = player.transform.forward * dashForce;
-            dashVector.y = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.E) && !isDash)
         {
-            if (dashVector.z > 0 && Mathf.Abs(dashVector.x) <= dashVector.z)
+            if (fward)
             {
                 forwardDash.Play();
             }
-
-            if (dashVector.z < 0 && Mathf.Abs(dashVector.x) <= Mathf.Abs(dashVector.z))
+            if (bward)
             {
                 backwardDash.Play();
             }
 
-            if (dashVector.x > 0 && Mathf.Abs(dashVector.z) <= dashVector.x)
+            if (right)
             {
                 rightDash.Play();
             }
 
-            if (dashVector.x < 0 && Mathf.Abs(dashVector.z) <= Mathf.Abs(dashVector.x))
+            if (left)
             {
                 leftDash.Play();
             }
@@ -197,7 +212,8 @@ public class PlayerAbilities : MonoBehaviour
 
         while (Time.time < startTime + dashDuration)
         {
-            player._controller.Move(dashVector * dashForce * Time.deltaTime);
+            player.GetComponent<Rigidbody>().AddForce(dashVector * dashForce, ForceMode.Impulse);  
+            //player._controller.Move(dashVector * dashForce * Time.deltaTime);
             yield return null;
         }
     }

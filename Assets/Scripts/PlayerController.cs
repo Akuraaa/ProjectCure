@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float _moveSpeed = 10;
+    private float _moveSpeed = 5;
+    [SerializeField]
+    private float _runningSpeed = 9;
     [SerializeField]
     public float _gravity = -10;
     [SerializeField]
@@ -18,10 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask _groundMask;
 
-   //[SerializeField]
-   //private Transform arms;
-   //[SerializeField]
-   //private Vector3 armPosition;
+   [SerializeField]
+   private Transform arms;
+   [SerializeField]
+   private Vector3 armPosition;
 
     public Vector3 _velocity;
     public bool _isGrounded;
@@ -30,7 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
-        //arms = AssignCharacterCamera();
+        arms = AssignCharacterCamera();
     }
     private void Update()
     {
@@ -39,12 +42,12 @@ public class PlayerController : MonoBehaviour
         Gravity();
     }
 
-    //private Transform AssignCharacterCamera()
-    //{
-    //    var t = transform;
-    //    arms.SetPositionAndRotation(t.position, t.rotation);
-    //    return arms;
-    //}
+    private Transform AssignCharacterCamera()
+    {
+        var t = transform;
+        arms.SetPositionAndRotation(t.position, t.rotation);
+        return arms;
+    }
 
     private void Movement()
     {
@@ -60,9 +63,12 @@ public class PlayerController : MonoBehaviour
             _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
         }
 
-       // var worldUp = arms.InverseTransformDirection(Vector3.up);
-       // var rotation = arms.rotation * Quaternion.AngleAxis(transform.rotation.x, worldUp) * Quaternion.AngleAxis(transform.rotation.y, Vector3.left);
-       // arms.rotation = rotation;
+        //var worldUp = arms.InverseTransformDirection(Vector3.up);
+        //var rotation = arms.rotation *
+        //               Quaternion.AngleAxis(transform.rotation.x, worldUp) *
+        //               Quaternion.AngleAxis(transform.rotation.y, Vector3.left);
+        
+        //arms.rotation = rotation;
     }
 
     private void Gravity()
