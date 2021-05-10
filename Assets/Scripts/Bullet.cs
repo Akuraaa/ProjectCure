@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
 	public Transform[] concreteImpactPrefabs;
 
 	public int damage = 20;
+	public int speed;
 
 	private void Start()
 	{
@@ -27,6 +28,10 @@ public class Bullet : MonoBehaviour
 		StartCoroutine(DestroyAfter());
 	}
 
+    private void Update()
+    {
+		transform.position += transform.forward * speed * Time.deltaTime;
+    }
     private void OnCollisionEnter(Collision collision)
     {
 

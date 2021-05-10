@@ -57,11 +57,9 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        //bloodyScreen.enabled = true;
         curHealth -= damage;
         alphaColor.a = (maxHealth - curHealth) * 0.01f;
         bloodyScreen.color = alphaColor;
         SetHealthBar();
     }
-
 }

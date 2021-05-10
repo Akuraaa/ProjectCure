@@ -5,19 +5,65 @@ using UnityEngine;
 public class TimedSpawner : MonoBehaviour
 {
     public GameObject zombie;
-    public bool stopSpawning = false;
+    public List<GameObject> zombies = new List<GameObject>();
+    public bool invoke;
+    public bool stopSpawn;
     public float spawnTime;
     public float spawnDelay;
+    public GameObject[] spawnPoints;
 
-    private void Start()
+    private void Update()
     {
-        InvokeRepeating("SpawnObject", spawnTime, spawnDelay);
+        if (invoke)
+        {
+            spawnTime += Time.deltaTime;
+            if(spawnTime >= spawnDelay)
+            {
+                var random = Random.Range(0, spawnPoints.Length + 1);
+
+                for (int i = 0; i < spawnPoints.Length; i++)
+                {
+                    if (random == i)
+                    {
+                        InvokeZombie(i);
+                    }
+                }
+                spawnTime = 0;
+            }
+        }
+        else
+        {
+            if (!stopSpawn)
+            {
+                spawnTime += Time.deltaTime;
+                if (spawnTime >= spawnDelay)
+                {
+                    var random = Random.Range(0, zombies.Count);
+
+                    for (int i = 0; i < zombies.Count; i++)
+                    {
+                        if (random == i)
+                        {
+                            SetActiveZombie(i);
+                        }
+                    }
+                    spawnTime = 0;
+                }
+            }
+            else
+                return;
+        }
     }
 
-    private void SpawnObject()
+    void InvokeZombie(int count)
     {
-        Instantiate(zombie, transform.position, transform.rotation);
-        if (stopSpawning)
-            CancelInvoke("SpawnObject");
+        Instantiate(zombie, spawnPoints[count].transform.position, spawnPoints[count].transform.rotation);
+    }
+
+    void SetActiveZombie(int count)
+    {
+        zombies[count].transform.position = spawnPoints[count].transform.position;
+        zombies[count].SetActive(true);
+        zombies.RemoveAt(count);
     }
 }
