@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour
 
 			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			Destroy(gameObject);			
 		}
 
@@ -87,8 +88,8 @@ public class Bullet : MonoBehaviour
 		if (collision.transform.tag == "ExplosiveBarrel")
 		{
 			//Toggle "explode" on explosive barrel object
-			//collision.transform.gameObject.GetComponent
-			//	<ExplosiveBarrelScript>().explode = true;
+			collision.transform.gameObject.GetComponent
+				<ExplosiveBarrelScript>().explode = true;
 			//Destroy bullet object
 			Destroy(gameObject);
 		}
@@ -97,7 +98,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-		if (collision.transform.tag == "Enemy")
+		if (collision.gameObject.tag == "Enemy")
         {
 			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
 		}
