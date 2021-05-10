@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
 	public Transform[] concreteImpactPrefabs;
 
 	public int damage = 20;
-	public int speed;
 
 	private void Start()
 	{
@@ -28,10 +27,6 @@ public class Bullet : MonoBehaviour
 		StartCoroutine(DestroyAfter());
 	}
 
-    private void Update()
-    {
-		transform.position += transform.forward * speed * Time.deltaTime;
-    }
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -44,7 +39,10 @@ public class Bullet : MonoBehaviour
         {
 			Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], transform.position, Quaternion.LookRotation(collision.contacts[0].normal));
 			collision.transform.GetComponent<Target>().TakeDamage(damage);
-			Destroy(gameObject);
+
+			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+			Destroy(gameObject);			
 		}
 
 		if (!destroyOnImpact)
@@ -97,7 +95,15 @@ public class Bullet : MonoBehaviour
 
 	}
 
-	private IEnumerator DestroyTimer()
+    private void OnCollisionExit(Collision collision)
+    {
+		if (collision.transform.tag == "Enemy")
+        {
+			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+		}
+	}
+
+    private IEnumerator DestroyTimer()
 	{
 		//Wait random time based on min and max values
 		yield return new WaitForSeconds
