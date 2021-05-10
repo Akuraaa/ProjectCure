@@ -128,6 +128,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -1044,6 +1054,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1 &20212453 stripped
@@ -1544,6 +1559,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -2033,6 +2058,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -4059,6 +4094,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1001 &130450672
@@ -5889,6 +5929,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -7281,6 +7331,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -7776,6 +7836,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -11044,6 +11114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1001 &363250454
@@ -11392,6 +11467,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -11467,6 +11552,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -12480,6 +12575,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -13084,6 +13189,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -13980,6 +14095,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -14325,6 +14450,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -15216,6 +15351,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!4 &500934705 stripped
@@ -16258,6 +16398,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -16327,6 +16477,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -17435,6 +17595,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!4 &582978279 stripped
@@ -18689,7 +18854,12 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1101555246}
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -19206,6 +19376,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -20752,6 +20932,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -21591,6 +21781,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -22441,6 +22641,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -22746,6 +22956,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -23979,6 +24199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1 &813040270 stripped
@@ -24283,6 +24508,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -24757,6 +24992,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -25481,6 +25726,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -25550,6 +25805,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -25998,6 +26263,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!4 &891551030 stripped
@@ -26156,6 +26426,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1001 &893966289
@@ -28020,6 +28295,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -29816,6 +30101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1001 &1014739005
@@ -30250,6 +30540,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -30382,6 +30682,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -32106,12 +32416,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1332379675}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1101555246 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8124224030730949773, guid: cfcb69fc276065c47af6e199d5158c4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 5983636672195399342}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1109529981 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4841986050709708, guid: 9f34d7f5d1b2bf240988044943b336b0,
@@ -33480,6 +33784,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -34343,6 +34657,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1 &1211213898 stripped
@@ -34664,6 +34983,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -35051,6 +35380,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1 &1241078855 stripped
@@ -35085,6 +35419,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -39408,6 +39752,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1997847204}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1410093559 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8547823279739831575, guid: cfcb69fc276065c47af6e199d5158c4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5983636672195399342}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1412885557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40235,6 +40585,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1001 &1433187480
@@ -40699,6 +41054,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -42015,12 +42380,17 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1101555246}
+      objectReference: {fileID: 1410093559}
     - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1272955342}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: timeToAggro
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -43123,6 +43493,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -43401,6 +43781,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -43490,6 +43880,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -43933,6 +44333,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -44352,6 +44762,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1 &1581139807 stripped
@@ -45586,7 +46001,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1101555246}
+      objectReference: {fileID: 1410093559}
     - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: character
@@ -46003,6 +46418,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -46199,6 +46624,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1001 &1637422606
@@ -46208,6 +46638,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -47201,6 +47641,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -47454,6 +47904,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -50168,6 +50628,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -50713,6 +51183,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -52566,6 +53046,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -53858,6 +54348,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -55453,6 +55953,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -56705,6 +57215,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieRange (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2999412362489595287, guid: 697f166e446ea334092ebf98d13b3311,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 697f166e446ea334092ebf98d13b3311, type: 3}
 --- !u!1 &2002243436
@@ -59130,6 +59645,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -60457,6 +60982,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -60546,6 +61081,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1410093559}
+    - target: {fileID: 457647219521183665, guid: 3c0eb533f9cbd94479252f54a62d9d74,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1272955342}
     - target: {fileID: 457647219521183670, guid: 3c0eb533f9cbd94479252f54a62d9d74,
         type: 3}
       propertyPath: m_Name
@@ -61343,6 +61888,26 @@ PrefabInstance:
       propertyPath: stepSound
       value: 
       objectReference: {fileID: 8300000, guid: 6f77228d88bbaa444bbe3a1f354001ab, type: 3}
+    - target: {fileID: 8544902603792313270, guid: cfcb69fc276065c47af6e199d5158c4a,
+        type: 3}
+      propertyPath: updraftCooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544902603792313270, guid: cfcb69fc276065c47af6e199d5158c4a,
+        type: 3}
+      propertyPath: dashCooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544902603792313270, guid: cfcb69fc276065c47af6e199d5158c4a,
+        type: 3}
+      propertyPath: invisibilityCooldown
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544902603792313270, guid: cfcb69fc276065c47af6e199d5158c4a,
+        type: 3}
+      propertyPath: invisibilityTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8544902603792313271, guid: cfcb69fc276065c47af6e199d5158c4a,
         type: 3}
       propertyPath: m_Constraints
