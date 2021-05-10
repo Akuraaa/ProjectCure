@@ -24,7 +24,7 @@ public class Target : MonoBehaviour
              }
              if(_anim != null)
              {
-             	_anim.Play("ReceiveDamage", 0, 0);
+             	_anim.Play("ZombieHit", 0, 0);
              }
          }
     

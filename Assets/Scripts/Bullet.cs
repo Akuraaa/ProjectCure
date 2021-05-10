@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
 	public Transform[] dirtImpactPrefabs;
 	public Transform[] concreteImpactPrefabs;
 
-	public int damage;
+	public int damage = 20;
 
 	private void Start()
 	{
@@ -29,6 +29,19 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+		if (collision.gameObject.tag == "Player")
+		{
+			Physics.IgnoreCollision(collision.collider, GetComponent<SphereCollider>(), true);
+		}
+
+		if (collision.gameObject.tag == "Enemy")
+        {
+			Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], transform.position, Quaternion.LookRotation(collision.contacts[0].normal));
+			collision.transform.GetComponent<Target>().TakeDamage(damage);
+			Destroy(gameObject);
+		}
+
 		if (!destroyOnImpact)
 		{
 			StartCoroutine(DestroyTimer());
@@ -37,16 +50,6 @@ public class Bullet : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-
-		if (collision.gameObject.tag == "Player")
-		{
-			Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
-		}
-
-		if (collision.gameObject.tag == "Enemy")
-        {
-			Physics.IgnoreCollision(collision.collider, GetComponent<Collider>());
-        }
 
 		if (collision.transform.tag == "Metal")
 		{
@@ -88,30 +91,6 @@ public class Bullet : MonoBehaviour
 		}
 
 	}
-
-    private void OnTriggerEnter(Collider other)
-	{
-		if (!destroyOnImpact)
-		{
-			StartCoroutine(DestroyTimer());
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
-
-		if (other.gameObject.transform.tag == "Player")
-		{
-			Physics.IgnoreCollision(other, GetComponent<Collider>());
-		}
-
-		if (other.transform.gameObject.GetComponent<Target>())
-		{
-			Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], transform.position, Quaternion.identity);
-			other.transform.GetComponent<Target>().TakeDamage(damage);
-		}	
-	}
-
 
 	private IEnumerator DestroyTimer()
 	{

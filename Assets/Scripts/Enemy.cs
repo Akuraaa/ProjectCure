@@ -21,7 +21,8 @@ public class Enemy : Target
 	private float followRange;
 	private float _followRange;
 
-	private float attackRange;
+	public float attackRange;
+	public float visionRange;
 	private bool getRotation;
 
 	int playerMask = 1 << 8;
@@ -40,13 +41,20 @@ public class Enemy : Target
 	private MeshCollider mesh;
 	private Vector3 lookplayer;
 
+	[SerializeField] AudioClip attackSound;
+
+	public AnimationClip _zombieHit;
+
 	private void Start()
 	{
+		_anim = GetComponent<Animator>();
 		parentScript = GetComponent<Target>();
 		_cooldowntime = cooldowntime;
 		rigid = GetComponent<Rigidbody>();
 		mesh = GetComponent<MeshCollider>();
 		timeToDie = 7f;
+		cooldowntime = _zombieHit.length * 2;
+		_cooldowntime = _zombieHit.length * 2;
 	}
 
 
@@ -58,22 +66,24 @@ public class Enemy : Target
 			lookplayer = new Vector3(player.position.x, transform.position.y, player.position.z);
 			followRange = Vector3.Distance(transform.position, player.position);
 
-			if (followRange < 5 && !cooldown)
+			if (followRange < attackRange && !cooldown)
 			{
-				_anim.SetBool("IsAttacking", true);
+				speed = 0;
+				_anim.SetTrigger("Attack");
+				Cooldown();
 				//Attack();
 			}
+			else
+            {
+				speed = 2;
+            }
 
-			if (stun)
-			{
-				Stun();
-			}
 			if (cooldown)
 			{
 				Cooldown();
 			}
 
-			if (!cooldown && !stun)
+			if (!cooldown)
 			{
 				Move();
 			}
@@ -84,30 +94,25 @@ public class Enemy : Target
 		}
 	}
 
-	void Stun()
-	{
-		stunTime -= Time.deltaTime;
-		if (stunTime <= 0)
-		{
-			_anim.SetBool("IsWalking", true);
-			stunTime = 1;
-			stun = false;
-		}
-	}
-
 
 	void Move()
 	{
+		if (stun)
+		{
+			stunTime -= Time.deltaTime;
 
+			if (stunTime <= 0)
+			{
+				stunTime = 0.5f;
+				stun = false;
+			}
+		}
 
-		if (aggro)
+		if (aggro && !stun)
 		{
 			followTarget = true;
 			_anim.SetBool("IsRunning", true);
 			_anim.SetBool("IsWalking", false);
-
-
-			//player.position
 			transform.rotation = Quaternion.LookRotation(lookplayer - transform.position);
 			transform.position += transform.forward * speed * Time.deltaTime;
 			getRotation = false;
@@ -121,7 +126,7 @@ public class Enemy : Target
 
 		else
 		{
-			if (followRange < 20)
+			if (followRange < visionRange && !stun)
 			{
 				Direction = player.position - transform.position;
 				Direction = Direction.normalized;
@@ -141,7 +146,6 @@ public class Enemy : Target
 					_anim.SetBool("IsWalking", false);
 					transform.rotation = Quaternion.LookRotation(lookplayer - transform.position);
 					transform.position += transform.forward * speed * Time.deltaTime;
-					Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
 					getRotation = false;
 				}
 
@@ -153,9 +157,7 @@ public class Enemy : Target
 				}
 
 			}
-
 			else
-
 			{
 				followTarget = false;
 				_anim.SetBool("IsWalking", true);
@@ -191,8 +193,6 @@ public class Enemy : Target
 		_cooldowntime -= Time.deltaTime;
 		if (_cooldowntime <= 0)
 		{
-			_anim.SetBool("IsAttacking", false);
-			_anim.SetBool("IsWalking", true);
 			cooldown = false;
 			_cooldowntime = cooldowntime;
 		}
@@ -227,7 +227,7 @@ public class Enemy : Target
 			aggro = true;
 			timeToAggro = 10f;
 			_audio.PlayOneShot(_receiveDamage);
-			_anim.Play("ReceiveDamage", 0, 0);
+			_anim.SetTrigger("ZombieHit");
 			stun = true;
 
 		}
@@ -241,13 +241,11 @@ public class Enemy : Target
 	}
 
 
-	public void OnAnimatorAttack()
+	public void OnAnimatorMeleeAttack()
 	{
+		_audio.PlayOneShot(attackSound);
 		stun = true;
 		cooldown = true;
-		//_anim.SetBool("IsCooldown", true);
-
-		//player.SendMessage("TakeDamage", damage);
 		player.GetComponent<FPSController>().SendMessage("TakeDamage", damage);
 	}
 }
