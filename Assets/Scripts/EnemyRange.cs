@@ -91,7 +91,7 @@ public class EnemyRange : Target
 
             if (stunTime <= 0)
             {
-                _anim.SetBool("ReceiveDamage", false);
+
                 stunTime = 0.5f;
                 stun = false;
             }
@@ -131,8 +131,7 @@ public class EnemyRange : Target
                     followTarget = true;
                     _anim.SetBool("IsWalking", false);
                     transform.rotation = Quaternion.LookRotation(player.position - transform.position);
-                    transform.position += transform.forward * speed * Time.deltaTime;
-                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                    transform.position += transform.forward * speed * Time.deltaTime;     
                     getRotation = false;
                 }
 
@@ -140,7 +139,6 @@ public class EnemyRange : Target
                 {
                     followTarget = false;
                     _anim.SetBool("IsWalking", true);
-                    // _anim.SetBool("IsRunning", false);
                 }
 
             }
@@ -157,7 +155,6 @@ public class EnemyRange : Target
             {
                 Waypoints();
                 _anim.SetBool("IsWalking", true);
-                //_anim.SetBool("IsRunning", false);
 
                 rotation = new Vector3(waypoints[waypointIndex].position.x, transform.position.y, waypoints[waypointIndex].position.z);
 
@@ -184,7 +181,6 @@ public class EnemyRange : Target
 
             _anim.SetBool("IsAttacking", false);
             cooldown = false;
-            _anim.SetBool("IsCooldown", false);
             _cooldowntime = cooldowntime;
         }
     }
@@ -205,7 +201,6 @@ public class EnemyRange : Target
                 waypointIndex = 0;
             }
             rotation = new Vector3(waypoints[waypointIndex].position.x, transform.position.y, waypoints[waypointIndex].position.z);
-            //waypoints[waypointIndex].position
             transform.rotation = Quaternion.LookRotation(rotation - transform.position);
         }
     }
@@ -221,7 +216,6 @@ public class EnemyRange : Target
                 aggro = true;
                 timeToAggro = 10f;
                 _audio.PlayOneShot(_receiveDamage);
-                _anim.SetBool("ReceiveDamage", true);
                 stun = true;
                 invulnerabilityTime = 1f;
             }
@@ -230,25 +224,9 @@ public class EnemyRange : Target
             {
                 _isDead = true;
                 rigid.useGravity = true;
-                Die();
             }
 
         }
-    }
-
-
-    public void Attack()
-    {
-        ////_anim.SetBool("IsAttacking", true);
-        //direction = orbSpawnpoint.position - player.transform.position;
-        //direction.Normalize();
-        //
-        //GameObject axe = Instantiate(axePrefab, orbSpawnpoint.position, player.transform.rotation);
-        //
-        //axe.gameObject.transform.SetDirection(direction);
-        //cooldown = true;
-        //_anim.SetBool("IsCooldown", true);
-
     }
 
     public void OnAnimatorRangeAttack()
@@ -256,6 +234,5 @@ public class EnemyRange : Target
         _audio.PlayOneShot(attackSound);
         AxeScript axe = Object.Instantiate(axePrefab, orbSpawnpoint.position, orbSpawnpoint.rotation).GetComponent<AxeScript>();
         axePrefab.GetComponent<AxeScript>().VectorToPlayer(orbSpawnpoint.transform.position, player.transform.position);
-
     }
 }
