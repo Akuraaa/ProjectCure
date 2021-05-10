@@ -204,7 +204,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 30.45
+  m_fontSize: 30.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Moverse\t\tWASD\nCorrer\t\tShift\nSaltar\t\tEspacio\nDisparo\t\tClick Izquierdo/Derecho\n\nHabilidades\tQ/E/C/G\nCuchillo\t\tF\n"
+  m_text: "Moverse\t\tWASD\nCorrer\t\tShift\nSaltar\t\tEspacio\nDisparo\t\tClick Izquierdo/Derecho\n\nHabilidades\tQ/E/C\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb8d87b34b16cda4da2dd69fd136be1e, type: 2}
   m_sharedMaterial: {fileID: 6014560635282996119, guid: cb8d87b34b16cda4da2dd69fd136be1e,
@@ -1390,10 +1390,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1305492103}
-    characterCount: 110
+    characterCount: 97
     spriteCount: 0
-    spaceCount: 19
-    wordCount: 17
+    spaceCount: 17
+    wordCount: 14
     linkCount: 0
     lineCount: 7
     pageCount: 1
@@ -1585,7 +1585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -21.4, y: 0}
+  m_AnchoredPosition: {x: -21.400024, y: 0}
   m_SizeDelta: {x: -448, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514179475
@@ -1876,7 +1876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.0000076293945}
+  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
   m_SizeDelta: {x: 0.000030518, y: -0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1711425288
