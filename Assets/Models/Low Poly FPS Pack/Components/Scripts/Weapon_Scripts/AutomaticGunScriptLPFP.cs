@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 
 public class AutomaticGunScriptLPFP : MonoBehaviour
 {
@@ -120,10 +121,8 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 	public AudioSource shootAudioSource;
 
 	[Header("UI Components")]
-	public Text timescaleText;
-	public Text currentWeaponText;
-	public Text currentAmmoText;
-	public Text totalAmmoText;
+	public TMP_Text currentAmmoText;
+	public TMP_Text totalAmmoText;
 
 	[System.Serializable]
 	public class prefabs
@@ -230,8 +229,8 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 
 			if (!soundHasPlayed)
 			{
-				mainAudioSource.clip = SoundClips.aimSound;
-				mainAudioSource.Play();
+				//mainAudioSource.clip = SoundClips.aimSound;
+				//mainAudioSource.Play();
 
 				soundHasPlayed = true;
 			}
@@ -262,7 +261,7 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 		}
 
 		//Set current ammo text from ammo int
-		//currentAmmoText.text = currentAmmo.ToString();
+		currentAmmoText.text = currentAmmo.ToString();
 
 		//Continosuly check which animation 
 		//is currently playing
