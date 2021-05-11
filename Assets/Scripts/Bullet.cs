@@ -39,10 +39,9 @@ public class Bullet : MonoBehaviour
         {
 			Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], transform.position, Quaternion.LookRotation(collision.contacts[0].normal));
 			collision.transform.GetComponent<Target>().TakeDamage(damage);
-
-			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+			collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll | RigidbodyConstraints.FreezeRotation;
+			StartCoroutine(ChangeConstrains());
+			collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 			Destroy(gameObject);			
 		}
 
@@ -96,14 +95,6 @@ public class Bullet : MonoBehaviour
 
 	}
 
-    private void OnCollisionExit(Collision collision)
-    {
-		if (collision.gameObject.tag == "Enemy")
-        {
-			collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
-		}
-	}
-
     private IEnumerator DestroyTimer()
 	{
 		//Wait random time based on min and max values
@@ -119,5 +110,10 @@ public class Bullet : MonoBehaviour
 		yield return new WaitForSeconds(destroyAfter);
 		//Destroy bullet object
 		Destroy(gameObject);
+	}
+
+	private IEnumerator ChangeConstrains()
+	{
+		yield return new WaitForSeconds(.5f);
 	}
 }

@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float maxHealth = 100;
     public float curHealth = 0;
 
-    public float timeToFade = 5;
+    public float timeToFade = 2;
     public bool hitPlayer = false;
     private Color alphaColor;
 
@@ -63,7 +63,7 @@ public class PlayerStats : MonoBehaviour
             if (alphaColor.a <= 0)
             {
                 hitPlayer = false;
-                timeToFade = 5;
+                timeToFade = 2;
             }
         }
 
@@ -87,6 +87,10 @@ public class PlayerStats : MonoBehaviour
         alphaColor.a = (maxHealth - curHealth) * 0.01f;
         bloodyScreen.color = alphaColor;
         SetHealthBar();
+        if (curHealth < 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,22 +101,15 @@ public class PlayerStats : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(pickUp);         
             Destroy(other.gameObject);
         }
-
-        if (openDoor)
-        {
-            if (other.gameObject.CompareTag("Door"))
-            {
-                SceneManager.LoadScene("Win");
-            }
-        }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == 15)
+        if (other.gameObject.CompareTag("Door"))
         {
             if (haveCode)
             {
+                situationText.gameObject.SetActive(true);
                 situationText.text = "Presiona F para abrir";
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -120,6 +117,7 @@ public class PlayerStats : MonoBehaviour
                     if (openDoor)
                     {
                         situationText.gameObject.SetActive(false);
+                        SceneManager.LoadScene("Win");
                     }
                 }
             }

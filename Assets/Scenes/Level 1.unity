@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 0
+    m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 12
@@ -68530,6 +68530,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5431331593342231339, guid: cfcb69fc276065c47af6e199d5158c4a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8124224030730949773, guid: cfcb69fc276065c47af6e199d5158c4a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -69178,12 +69183,12 @@ PrefabInstance:
     - target: {fileID: 8543689057147360544, guid: cfcb69fc276065c47af6e199d5158c4a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -24.089966
+      value: -24.089844
       objectReference: {fileID: 0}
     - target: {fileID: 8543689057147360544, guid: cfcb69fc276065c47af6e199d5158c4a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.3200073
+      value: -7.3200684
       objectReference: {fileID: 0}
     - target: {fileID: 8543689057319774532, guid: cfcb69fc276065c47af6e199d5158c4a,
         type: 3}
@@ -69203,7 +69208,7 @@ PrefabInstance:
     - target: {fileID: 8543689057751087893, guid: cfcb69fc276065c47af6e199d5158c4a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -7.4500732
+      value: -7.4501953
       objectReference: {fileID: 0}
     - target: {fileID: 8543689057751087893, guid: cfcb69fc276065c47af6e199d5158c4a,
         type: 3}
