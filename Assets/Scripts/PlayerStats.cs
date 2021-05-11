@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -17,6 +18,17 @@ public class PlayerStats : MonoBehaviour
     public bool hitPlayer = false;
     private Color alphaColor;
 
+    public float timerToFinishLevel;
+
+    [SerializeField] private TMP_Text situationText;
+    private bool haveCode, openDoor;
+
+
+    [SerializeField] private TMP_Text timeText;
+    [SerializeField] private Light[] spotLights;
+    [SerializeField] private Color normalColor, warningColor;
+    [SerializeField] private AudioClip pickUp;
+
     private void Start()
     {
         alphaColor = bloodyScreen.color;
@@ -25,6 +37,13 @@ public class PlayerStats : MonoBehaviour
         curHealth = maxHealth;
         healthText.text = curHealth.ToString();
         SetHealthBar();
+
+        situationText.gameObject.SetActive(false);
+        timeText.gameObject.SetActive(false);
+        for (int i = 0; i < spotLights.Length; i++)
+        {
+            spotLights[i].color = normalColor;
+        }
     }
 
     private void Update()
@@ -47,6 +66,13 @@ public class PlayerStats : MonoBehaviour
                 timeToFade = 5;
             }
         }
+
+        if (openDoor)
+        {
+            SetLightning();
+            SetTimerOn();
+            //SETEAR EL TIEMPO
+        }
     }
 
     public void SetHealthBar()
@@ -61,5 +87,90 @@ public class PlayerStats : MonoBehaviour
         alphaColor.a = (maxHealth - curHealth) * 0.01f;
         bloodyScreen.color = alphaColor;
         SetHealthBar();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "PaperCode")
+        {
+            haveCode = true;
+            GetComponent<AudioSource>().PlayOneShot(pickUp);         
+            Destroy(other.gameObject);
+        }
+
+        if (openDoor)
+        {
+            if (other.gameObject.tag == "Door")
+            {
+                SceneManager.LoadScene("Win");
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Door")
+        {
+            if (haveCode)
+            {
+                situationText.text = "Presiona F para abrir";
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    openDoor = true;
+                    if (openDoor)
+                    {
+                        situationText.gameObject.SetActive(false);
+                    }
+                }
+            }
+            else
+            {
+                situationText.text = "Necesitas el codigo para abrir";
+            }
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Door")
+        {
+            situationText.gameObject.SetActive(false);
+        }
+    }
+
+    private void SetLightning()
+    {
+        for (int i = 0; i < spotLights.Length; i++)
+        {
+            spotLights[i].GetComponent<LightScript>().changeColor = true;
+            spotLights[i].color = warningColor;
+        }
+    }
+
+    private void SetTimerOn()
+    {
+        if (timerToFinishLevel > 0)
+        {
+            timerToFinishLevel -= Time.deltaTime;
+        }
+        else
+        {
+            timerToFinishLevel = 0;
+        }
+        DisplayTime(timerToFinishLevel);
+    }
+
+    void DisplayTime(float timeToDisplay)
+    {
+        if (timeToDisplay < 0)
+        {
+            timeToDisplay = 0;
+        }
+
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+        float miliseconds = timeToDisplay % 1 * 100;
+
+        timeText.text = string.Format("{0:00}:{1:00}", seconds, miliseconds);
     }
 }

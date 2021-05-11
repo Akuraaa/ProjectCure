@@ -11,6 +11,7 @@ TagManager:
   - ExplosiveBarrel
   - GasTank
   - Enemy
+  - PaperCode
   layers:
   - Default
   - TransparentFX
@@ -27,8 +28,8 @@ TagManager:
   - Ground
   - Win
   - Bullet
-  - 
-  - 
+  - Door
+  - PaperCode
   - 
   - EnemyDeath
   - 
