@@ -12,6 +12,7 @@ TagManager:
   - GasTank
   - Enemy
   - PaperCode
+  - Door
   layers:
   - Default
   - TransparentFX

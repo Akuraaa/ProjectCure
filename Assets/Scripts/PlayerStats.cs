@@ -70,7 +70,7 @@ public class PlayerStats : MonoBehaviour
         if (openDoor)
         {
             SetLightning();
-            SetTimerOn();
+            //SetTimerOn();
             //SETEAR EL TIEMPO
         }
     }
@@ -91,7 +91,7 @@ public class PlayerStats : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PaperCode")
+        if (other.gameObject.CompareTag("PaperCode"))
         {
             haveCode = true;
             GetComponent<AudioSource>().PlayOneShot(pickUp);         
@@ -100,7 +100,7 @@ public class PlayerStats : MonoBehaviour
 
         if (openDoor)
         {
-            if (other.gameObject.tag == "Door")
+            if (other.gameObject.CompareTag("Door"))
             {
                 SceneManager.LoadScene("Win");
             }
@@ -109,7 +109,7 @@ public class PlayerStats : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Door")
+        if (other.gameObject.layer == 15)
         {
             if (haveCode)
             {
@@ -125,6 +125,7 @@ public class PlayerStats : MonoBehaviour
             }
             else
             {
+                situationText.gameObject.SetActive(true);
                 situationText.text = "Necesitas el codigo para abrir";
             }
         }
