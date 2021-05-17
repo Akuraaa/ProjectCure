@@ -162,7 +162,7 @@ public class HandgunScript : MonoBehaviour
 		//Save the weapon name
 		storedWeaponName = weaponName;
 		//Set total ammo text from total ammo int
-		totalAmmoText.text = ammo.ToString();
+		//totalAmmoText.text = ammo.ToString();
 
 		//Weapon sway
 		initialSwayPosition = transform.localPosition;
@@ -203,8 +203,8 @@ public class HandgunScript : MonoBehaviour
 
 			if (!soundHasPlayed)
 			{
-				mainAudioSource.clip = SoundClips.aimSound;
-				mainAudioSource.Play();
+				//mainAudioSource.clip = SoundClips.aimSound;
+				//mainAudioSource.Play();
 
 				soundHasPlayed = true;
 			}
@@ -310,8 +310,8 @@ public class HandgunScript : MonoBehaviour
 				Spawnpoints.bulletSpawnPoint.transform.rotation);
 
 			//Add velocity to the bullet
-			//bullet.GetComponent<Rigidbody>().velocity =
-			//bullet.transform.forward * bulletForce;
+			bullet.GetComponent<Rigidbody>().velocity =
+			bullet.transform.forward * bulletForce;
 
 			//Spawn casing prefab at spawnpoint
 			Instantiate(Prefabs.casingPrefab,

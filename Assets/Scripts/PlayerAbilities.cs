@@ -27,18 +27,18 @@ public class PlayerAbilities : MonoBehaviour
     private bool fward, bward, left, right;
     [SerializeField] private ParticleSystem forwardDash, backwardDash, leftDash, rightDash, updraftParticle;
 
-    [Header("Invisibility")]
-    public bool isInvisibility;
-    public float invisibilityTime;
-    public float invisibilityCooldown;
-    private float _invisibilityTime;
-    [SerializeField] private AudioClip invisibilitySound;
-    [SerializeField] private Image invisiblityUI;
-    [SerializeField] private Image cloakFeedback;
-    private Color alphaColor;
-    private Color abilitieNotReadyColor;
-    private Color abilitieReadyColor;
-    private AudioSource _audio;
+   [Header("Invisibility")]
+   public bool isInvisibility;
+   public float invisibilityTime;
+   public float invisibilityCooldown;
+   private float _invisibilityTime;
+   [SerializeField] private AudioClip invisibilitySound;
+   [SerializeField] private Image invisiblityUI;
+   [SerializeField] private Image cloakFeedback;
+   private Color alphaColor;
+   private Color abilitieNotReadyColor;
+   private Color abilitieReadyColor;
+   private AudioSource _audio;
 
 
     private void Awake()
@@ -46,9 +46,9 @@ public class PlayerAbilities : MonoBehaviour
         alphaColor = cloakFeedback.color;
         alphaColor.a = 0;
         cloakFeedback.color = alphaColor;
-
+        
         _invisibilityTime = invisibilityTime;
-
+        
         _audio = GetComponent<AudioSource>();
         player = GetComponent<FPSController>();
         abilitieNotReadyColor = new Color(.3f, .009f, .15f, .5f);
@@ -59,7 +59,7 @@ public class PlayerAbilities : MonoBehaviour
     {
         Updraft();
         Dash();
-        Invisibility();
+        //Invisibility();
     }
 
     void Updraft()

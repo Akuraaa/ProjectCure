@@ -37,6 +37,7 @@ public class Target : MonoBehaviour
     
      public virtual void Die()
      {
+        _anim.Play("ZombieDeath");
          Destroy(gameObject, timeToDie);
      }
 

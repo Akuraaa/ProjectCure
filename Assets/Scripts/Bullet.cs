@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
 	public Transform[] concreteImpactPrefabs;
 
 	public int damage = 20;
-	public int speed;
 
 	private void Start()
 	{
@@ -28,10 +27,6 @@ public class Bullet : MonoBehaviour
 		StartCoroutine(DestroyAfter());
 	}
 
-    private void Update()
-    {
-		transform.position += transform.forward * speed * Time.deltaTime;
-    }
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -44,7 +39,10 @@ public class Bullet : MonoBehaviour
         {
 			Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], transform.position, Quaternion.LookRotation(collision.contacts[0].normal));
 			collision.transform.GetComponent<Target>().TakeDamage(damage);
-			Destroy(gameObject);
+			collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll | RigidbodyConstraints.FreezeRotation;
+			StartCoroutine(ChangeConstrains());
+			collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+			Destroy(gameObject);			
 		}
 
 		if (!destroyOnImpact)
@@ -89,15 +87,15 @@ public class Bullet : MonoBehaviour
 		if (collision.transform.tag == "ExplosiveBarrel")
 		{
 			//Toggle "explode" on explosive barrel object
-			//collision.transform.gameObject.GetComponent
-			//	<ExplosiveBarrelScript>().explode = true;
+			collision.transform.gameObject.GetComponent
+				<ExplosiveBarrelScript>().explode = true;
 			//Destroy bullet object
 			Destroy(gameObject);
 		}
 
 	}
 
-	private IEnumerator DestroyTimer()
+    private IEnumerator DestroyTimer()
 	{
 		//Wait random time based on min and max values
 		yield return new WaitForSeconds
@@ -112,5 +110,10 @@ public class Bullet : MonoBehaviour
 		yield return new WaitForSeconds(destroyAfter);
 		//Destroy bullet object
 		Destroy(gameObject);
+	}
+
+	private IEnumerator ChangeConstrains()
+	{
+		yield return new WaitForSeconds(.5f);
 	}
 }
