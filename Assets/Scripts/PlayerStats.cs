@@ -89,7 +89,7 @@ public class PlayerStats : MonoBehaviour
         SetHealthBar();
         if (curHealth < 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("Derrota");
         }
     }
 
