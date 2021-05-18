@@ -89,6 +89,8 @@ public class PlayerStats : MonoBehaviour
         SetHealthBar();
         if (curHealth < 0)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Derrota");
         }
     }
