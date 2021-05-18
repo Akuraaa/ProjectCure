@@ -12,7 +12,7 @@ public class PatrolState : ZombieState
     {
         base.Awake();
         zombie.currentWaypoint = 0;
-        zombie.speed = 1;
+        zombie.speed = .5f;
     }
 
     public override void Execute()
