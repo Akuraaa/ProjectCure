@@ -31,6 +31,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         alphaColor = bloodyScreen.color;
         alphaColor.a = 0;
         bloodyScreen.color = alphaColor;
