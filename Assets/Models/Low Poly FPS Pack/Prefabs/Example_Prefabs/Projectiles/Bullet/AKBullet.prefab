@@ -183,7 +183,7 @@ MonoBehaviour:
   concreteImpactPrefabs:
   - {fileID: 4587651611338842, guid: 5e02303289b3c494e8e185be0fbbd405, type: 3}
   damage: 10
-  speed: 5
+  speed: 500
 --- !u!135 &3194420650550983463
 SphereCollider:
   m_ObjectHideFlags: 0

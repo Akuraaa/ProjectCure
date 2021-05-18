@@ -5,7 +5,7 @@ public class Target : MonoBehaviour
     public int health;
     public float damage;
     private int currentHealth;
-    protected Animator _anim;
+    public Animator _anim;
     public AudioSource _audio;
     public AudioClip _receiveDamage;
     public bool _isDead = false;
