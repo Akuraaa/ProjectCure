@@ -18,6 +18,8 @@ public class Menu : MonoBehaviour
     {
         Control.enabled = false;
         Credit.enabled = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     void OnMouse()
