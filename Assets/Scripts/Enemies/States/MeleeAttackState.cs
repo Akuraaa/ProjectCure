@@ -24,7 +24,7 @@ public class MeleeAttackState : ZombieState
         }
         else
         {
-            zombie.transform.LookAt(zombie.player.transform.position);
+            zombie.target = zombie.playerPosDetection;
         }
     }
 

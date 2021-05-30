@@ -13,7 +13,7 @@ public class Target : MonoBehaviour
 	private bool isDead;
 	public float timeToDie;
 
-     public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount)
      {
          if (health > 0)
          {

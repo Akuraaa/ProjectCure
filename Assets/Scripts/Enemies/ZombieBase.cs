@@ -19,15 +19,20 @@ public class ZombieBase : Target
 
     public FPSController player;
     public Transform playerPosDetection;
-
+    public Transform target;
     public AudioClip rangeAttack, meleeAttack;
     public int currentWaypoint = 0;
 
-    public bool playerInSight = false, playerInRange = false;
+    public Rigidbody _rb;
+    public bool playerInSight = false;
     public bool isRange;
+    public float turnSpeed = .1f;
+    public Vector3 direction;
+    public Quaternion rotGoal;
 
     private void Awake()
     {
+        _rb = GetComponent<Rigidbody>();
         player = FindObjectOfType<FPSController>();
         playerPosDetection = player.transform;
         _anim = GetComponent<Animator>();
@@ -46,28 +51,49 @@ public class ZombieBase : Target
 
     private void Update()
     {
-        _stateMachine.Update();
-        if (Vector3.Distance(player.transform.position, transform.position) > radius)
-            playerInRange = true;
-        else
-            playerInRange = false;
-
-        if (playerInRange)
+        transform.LookAt(target);
+        transform.position += transform.forward * speed * Time.deltaTime;
+        if (LineOfSight() == true)
         {
-            Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle)
+            if (isRange)
             {
-                if (!Physics.Raycast(transform.position, dirToPlayer, radius, 1 << 8))
+                if (Vector3.Distance(transform.position, player.transform.position) > zombieRangeDist)
                 {
-                   if (isRange)
-                       _stateMachine.SetState<RangeAttackState>();
-                   else
-                       _stateMachine.SetState<MeleeAttackState>();
+                    _stateMachine.SetState<RangeAttackState>();
                 }
+                else
+                    _stateMachine.SetState<ChaseState>();
+            }
+            else
+            {
+                if (Vector3.Distance(transform.position, player.transform.position) > zombieMeleeDist)
+                {
+                    _stateMachine.SetState<MeleeAttackState>();
+                }
+                else
+                    _stateMachine.SetState<ChaseState>();
             }
         }
+        _stateMachine.Update();
     }
 
+    public bool LineOfSight()
+    {
+        Vector3 dirToPlayer = (player.transform.position - transform.position).normalized;
+        if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle)
+        {
+            RaycastHit hit = new RaycastHit();
+            if (Physics.Raycast(transform.position, dirToPlayer, out hit, radius, 1 << 8))
+            {
+                playerInSight = hit.transform.gameObject.layer == 8;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return playerInSight;
+    }
     public void OnRangeAttack()
     {
         if (!isRange)

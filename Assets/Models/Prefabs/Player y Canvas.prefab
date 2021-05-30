@@ -42068,7 +42068,7 @@ MonoBehaviour:
   fireRate: 11.5
   autoReload: 0
   autoReloadDelay: 0.25
-  ammo: 31
+  ammo: 30
   bulletForce: 100
   showBulletInMagDelay: 0.6
   bulletInMagRenderer: {fileID: 8608530629642072677}

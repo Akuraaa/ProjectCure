@@ -24,7 +24,7 @@ public class RangeAttackState : ZombieState
         }
         else
         {
-            zombie.transform.LookAt(zombie.player.transform.position);
+            zombie.target = zombie.playerPosDetection;
         }
     }
 

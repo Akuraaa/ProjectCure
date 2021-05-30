@@ -195,32 +195,6 @@ public class HandgunScript : MonoBehaviour
 	private void Update()
 	{
 
-		//Aiming
-		//Toggle camera FOV when right click is held down
-		if (Input.GetButton("Fire2") && !isReloading && !isRunning && !isInspecting)
-		{
-			isAiming = true;
-
-			if (!soundHasPlayed)
-			{
-				//mainAudioSource.clip = SoundClips.aimSound;
-				//mainAudioSource.Play();
-
-				soundHasPlayed = true;
-			}
-		}
-		else
-		{
-			//When right click is released
-			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-				defaultFov, fovSpeed * Time.deltaTime);
-
-			isAiming = false;
-
-			soundHasPlayed = false;
-		}
-		//Aiming end
-
 		//If randomize muzzleflash is true, genereate random int values
 		if (randomMuzzleflash == true)
 		{

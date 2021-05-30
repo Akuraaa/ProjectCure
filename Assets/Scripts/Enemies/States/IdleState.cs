@@ -21,7 +21,7 @@ public class IdleState : ZombieState
         base.Execute();
         timeToIdle = Random.Range(zombie.minIdleTime, zombie.maxIdleTime);
         currentIdleDuration = 0;
-        zombie.speed = 0;
+        //zombie.speed = 0;
         currentIdleDuration += Time.deltaTime;
         if (currentIdleDuration < timeToIdle)
         {

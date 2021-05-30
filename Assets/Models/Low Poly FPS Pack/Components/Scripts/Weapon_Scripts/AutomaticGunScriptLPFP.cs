@@ -209,51 +209,6 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 	private void Update()
 	{
 
-		//Aiming
-		//Toggle camera FOV when right click is held down
-		if (Input.GetButton("Fire2") && !isReloading && !isRunning && !isInspecting)
-		{
-			if (ironSights == true)
-			{
-				gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-					ironSightsAimFOV, fovSpeed * Time.deltaTime);
-			}	
-
-			isAiming = true;
-
-			//If iron sights are enabled, use normal aim
-			if (ironSights == true)
-			{
-				anim.SetBool("Aim", true);
-			}
-
-			if (!soundHasPlayed)
-			{
-				//mainAudioSource.clip = SoundClips.aimSound;
-				//mainAudioSource.Play();
-
-				soundHasPlayed = true;
-			}
-		}
-		else
-		{
-			//When right click is released
-			gunCamera.fieldOfView = Mathf.Lerp(gunCamera.fieldOfView,
-				defaultFov, fovSpeed * Time.deltaTime);
-
-			isAiming = false;
-
-			//If iron sights are enabled, use normal aim out
-			if (ironSights == true)
-			{
-				anim.SetBool("Aim", false);
-			}		
-
-			soundHasPlayed = false;
-		
-		}
-		//Aiming end
-
 		//If randomize muzzleflash is true, genereate random int values
 		if (randomMuzzleflash == true)
 		{
@@ -282,7 +237,7 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 		{
 			//Toggle bool
 			outOfAmmo = false;
-			//anim.SetBool ("Out Of Ammo", false);
+			anim.SetBool ("Out Of Ammo", false);
 		}
 
 		//AUtomatic fire
@@ -292,17 +247,17 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 			//Shoot automatic
 			if (Time.time - lastFired > 1 / fireRate)
 			{
+				anim.Play("Fire", 0, 0f);
 				lastFired = Time.time;
 
 				//Remove 1 bullet from ammo
 				currentAmmo -= 1;
 
-					shootAudioSource.clip = SoundClips.shootSound;
-					shootAudioSource.Play();
+				shootAudioSource.clip = SoundClips.shootSound;
+				shootAudioSource.Play();
 
 				if (!isAiming) //if not aiming
 				{
-					anim.Play("Fire", 0, 0f);
 					//If random muzzle is false
 					if (!randomMuzzleflash &&
 						enableMuzzleflash == true && !silencer)
@@ -310,37 +265,6 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 						muzzleParticles.Emit(1);
 						//Light flash start
 						StartCoroutine(MuzzleFlashLight());
-					}
-					else if (randomMuzzleflash == true)
-					{
-						//Only emit if random value is 1
-						if (randomMuzzleflashValue == 1)
-						{
-							if (enableSparks == true)
-							{
-								//Emit random amount of spark particles
-								sparkParticles.Emit(Random.Range(minSparkEmission, maxSparkEmission));
-							}
-							if (enableMuzzleflash == true && !silencer)
-							{
-								muzzleParticles.Emit(1);
-								//Light flash start
-								StartCoroutine(MuzzleFlashLight());
-							}
-						}
-					}
-				}
-				else //if aiming
-				{
-					if (ironSights == true)
-					{
-						anim.Play("Aim Fire", 0, 0f);
-					}	
-					//If random muzzle is false
-					if (!randomMuzzleflash && !silencer)
-					{
-						muzzleParticles.Emit(1);
-						//If random muzzle is true
 					}
 					else if (randomMuzzleflash == true)
 					{
@@ -377,12 +301,6 @@ public class AutomaticGunScriptLPFP : MonoBehaviour
 					Spawnpoints.casingSpawnPoint.transform.position,
 					Spawnpoints.casingSpawnPoint.transform.rotation);
 			}
-		}
-
-		//Inspect weapon when T key is pressed
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			anim.SetTrigger("Inspect");
 		}
 
 		//Reload 

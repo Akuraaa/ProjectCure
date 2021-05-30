@@ -21,13 +21,14 @@ public class PlayerStats : MonoBehaviour
     public float timerToFinishLevel;
 
     [SerializeField] private TMP_Text situationText;
-    private bool haveCode, openDoor;
+    private bool haveCode, openDoor, haveMap;
 
 
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private Light[] spotLights;
     [SerializeField] private Color normalColor, warningColor;
     [SerializeField] private AudioClip pickUp;
+    [SerializeField] private GameObject map;
 
     private void Start()
     {
@@ -74,6 +75,15 @@ public class PlayerStats : MonoBehaviour
             //SetTimerOn();
             //SETEAR EL TIEMPO
         }
+
+        if (haveMap && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            map.SetActive(true);
+        }
+        if (haveMap && Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            map.SetActive(false);
+        }
     }
 
     public void SetHealthBar()
@@ -102,6 +112,13 @@ public class PlayerStats : MonoBehaviour
         {
             haveCode = true;
             GetComponent<AudioSource>().PlayOneShot(pickUp);         
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Map"))
+        {
+            haveMap = true;
+            GetComponent<AudioSource>().PlayOneShot(pickUp);
             Destroy(other.gameObject);
         }
     }
