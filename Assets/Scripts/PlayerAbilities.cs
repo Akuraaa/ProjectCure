@@ -57,7 +57,7 @@ public class PlayerAbilities : MonoBehaviour
 
     void Update()
     {
-        Updraft();
+        //Updraft();
         Dash();
         //Invisibility();
     }

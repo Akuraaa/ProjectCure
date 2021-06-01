@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - PaperCode
   - Door
+  - Mapa
   layers:
   - Default
   - TransparentFX

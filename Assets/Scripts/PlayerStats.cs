@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
 {
     public Image healthBar;
     public Image bloodyScreen;
+    public Image Mapa;
 
     public TMP_Text healthText;
     public float maxHealth = 100;
@@ -76,11 +77,11 @@ public class PlayerStats : MonoBehaviour
             //SETEAR EL TIEMPO
         }
 
-        if (haveMap && Input.GetKeyDown(KeyCode.LeftShift))
+        if (haveMap && Input.GetKeyDown(KeyCode.V))
         {
             map.SetActive(true);
         }
-        if (haveMap && Input.GetKeyUp(KeyCode.LeftShift))
+        else
         {
             map.SetActive(false);
         }
@@ -115,7 +116,7 @@ public class PlayerStats : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.CompareTag("Map"))
+        if (other.gameObject.CompareTag("Mapa"))
         {
             haveMap = true;
             GetComponent<AudioSource>().PlayOneShot(pickUp);
