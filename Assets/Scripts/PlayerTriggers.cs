@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PlayerTriggers : MonoBehaviour
 {
+    public bool haveMap;
     public bool haveCode;
     [SerializeField] private GameObject noCodeText;
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Mapa")
+        {
+            haveMap = true;
+            
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Code")
