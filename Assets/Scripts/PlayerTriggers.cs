@@ -21,6 +21,7 @@ public class PlayerTriggers : MonoBehaviour
         {
             haveCode = true;
         }
+       
     }
 
     private void OnTriggerStay(Collider other)
