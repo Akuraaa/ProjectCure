@@ -7091,6 +7091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 10
+  speed: 0.5
   _anim: {fileID: 0}
   _audio: {fileID: 8234600870331732773}
   _receiveDamage: {fileID: 8300000, guid: d59229f63a9ac8b4b91ba6cc157958b5, type: 3}
@@ -7106,7 +7107,7 @@ MonoBehaviour:
   - {fileID: 2314060973335073390}
   - {fileID: 2314060972914770321}
   - {fileID: 2314060971910712868}
-  attackRange: 1.5
+  attackRange: 2
   visionRange: 10
   stun: 0
   cooldown: 0
@@ -7128,6 +7129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 10
+  speed: 0
   _anim: {fileID: 0}
   _audio: {fileID: 8234600870331732773}
   _receiveDamage: {fileID: 8300000, guid: d59229f63a9ac8b4b91ba6cc157958b5, type: 3}
