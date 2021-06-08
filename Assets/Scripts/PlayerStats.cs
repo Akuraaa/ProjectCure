@@ -176,7 +176,7 @@ public class PlayerStats : MonoBehaviour
             if (!haveElectricity)
             {
                 situationText.gameObject.SetActive(true);
-                situationText.text = "Deberia cortar la electricidad";
+                situationText.text = "Deberia cortar la electricidad primero";
             }
             else
             {
@@ -202,7 +202,7 @@ public class PlayerStats : MonoBehaviour
             {
                 canElectricBox = true;
                 situationText.gameObject.SetActive(true);
-                situationText.text = "Presione F para usar la barreta";
+                situationText.text = "Presione ´F´  para usar la barreta";
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
@@ -210,6 +210,7 @@ public class PlayerStats : MonoBehaviour
                     foreach (var spark in sparks)
                     {
                         spark.SetActive(false);
+                        situationText.text = "ya puedo pasar sin problemas";
                     }
                     giantBox.SetActive(false);
 
@@ -219,7 +220,7 @@ public class PlayerStats : MonoBehaviour
             {
                 canElectricBox = false;
                 situationText.gameObject.SetActive(true);
-                situationText.text = "Deberia buscar una barreta";
+                situationText.text = "esta debe ser la fuente, debo destruirla con algo";
             }
         }
 
