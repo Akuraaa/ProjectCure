@@ -25,7 +25,6 @@ public class PatrolState : ZombieState
         //zombie.transform.rotation = Quaternion.Slerp(zombie.transform.rotation, zombie.rotGoal, zombie.turnSpeed);
         //zombie.transform.position += zombie.transform.forward * zombie.speed * Time.deltaTime;
         zombie.target = zombie.waypoints[zombie.currentWaypoint].GetComponent<Transform>();
-
         if (Vector3.Distance (zombie.transform.position, zombie.waypoints[zombie.currentWaypoint].transform.position) < .5f)
         {
             if (zombie.currentWaypoint < zombie.waypoints.Count -1)

@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Target : MonoBehaviour
 {
     public int health;
     public float damage;
+    public float speed;
     private int currentHealth;
     public Animator _anim;
     public AudioSource _audio;
@@ -24,7 +26,7 @@ public class Target : MonoBehaviour
              }
              if(_anim != null)
              {
-             	_anim.Play("ZombieHit", 0, 0);
+                StartCoroutine(StunCorroutine());
              }
          }
     
@@ -48,5 +50,13 @@ public class Target : MonoBehaviour
             other.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
             other.gameObject.GetComponent<PlayerStats>().hitPlayer = true;
         }
+    }
+
+    IEnumerator StunCorroutine()
+    {
+        speed = 0;
+        _anim.Play("ZombieHit", 0, 0);
+        yield return new WaitForSeconds(_anim.GetCurrentAnimatorClipInfo(0).Length);
+        speed = .5f;
     }
 }

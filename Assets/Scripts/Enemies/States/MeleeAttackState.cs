@@ -18,14 +18,14 @@ public class MeleeAttackState : ZombieState
     public override void Execute()
     {
         base.Execute();
-        if (Vector3.Distance(zombie.player.transform.position, zombie.transform.position) < zombie.zombieMeleeDist)
-        {
-            _sm.SetState<ChaseState>();
-        }
-        else
-        {
-            zombie.target = zombie.playerPosDetection;
-        }
+        //if (Vector3.Distance(zombie.player.transform.position, zombie.transform.position) < zombie.zombieMeleeDist)
+        //{
+        //    _sm.SetState<ChaseState>();
+        //}
+        //else
+        //{
+            zombie.target = zombie.player.transform;
+        //}
     }
 
     public override void Sleep()

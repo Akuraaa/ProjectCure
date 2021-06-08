@@ -7,7 +7,6 @@ public class ZombieBase : Target
     public StateMachine _stateMachine;
 
     public List<Transform> waypoints = new List<Transform>();
-    public float speed;
 
     public float minIdleTime = 3, maxIdleTime = 5;
     public float fireRate = 1.5f, viewAngle = 45;
@@ -23,16 +22,11 @@ public class ZombieBase : Target
     public AudioClip rangeAttack, meleeAttack;
     public int currentWaypoint = 0;
 
-    public Rigidbody _rb;
     public bool playerInSight = false;
     public bool isRange;
-    public float turnSpeed = .1f;
-    public Vector3 direction;
-    public Quaternion rotGoal;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
         player = FindObjectOfType<FPSController>();
         playerPosDetection = player.transform;
         _anim = GetComponent<Animator>();
@@ -47,6 +41,7 @@ public class ZombieBase : Target
     private void Start()
     {
         _stateMachine.SetState<PatrolState>();
+
     }
 
     private void Update()
@@ -57,21 +52,21 @@ public class ZombieBase : Target
         {
             if (isRange)
             {
-                if (Vector3.Distance(transform.position, player.transform.position) > zombieRangeDist)
+                if (Vector3.Distance(transform.position, player.transform.position) < zombieRangeDist)
                 {
-                    _stateMachine.SetState<RangeAttackState>();
+                    _stateMachine.SetState<ChaseState>();
                 }
                 else
-                    _stateMachine.SetState<ChaseState>();
+                    _stateMachine.SetState<RangeAttackState>();
             }
             else
             {
                 if (Vector3.Distance(transform.position, player.transform.position) > zombieMeleeDist)
                 {
-                    _stateMachine.SetState<MeleeAttackState>();
+                    _stateMachine.SetState<ChaseState>();
                 }
                 else
-                    _stateMachine.SetState<ChaseState>();
+                    _stateMachine.SetState<MeleeAttackState>();
             }
         }
         _stateMachine.Update();
@@ -94,7 +89,7 @@ public class ZombieBase : Target
         }
         return playerInSight;
     }
-    public void OnRangeAttack()
+    public void OnAnimatorRangeAttack()
     {
         if (!isRange)
         {
@@ -109,7 +104,7 @@ public class ZombieBase : Target
         }
     }
 
-    public void OnMeleeAttack()
+    public void OnAnimatorMeleeAttack()
     {
         if (isRange)
         {
