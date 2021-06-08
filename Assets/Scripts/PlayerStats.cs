@@ -9,7 +9,6 @@ public class PlayerStats : MonoBehaviour
 {
     public Image healthBar;
     public Image bloodyScreen;
-    public Image Mapa;
 
     public TMP_Text healthText;
     public float maxHealth = 100;
@@ -77,7 +76,7 @@ public class PlayerStats : MonoBehaviour
             //SETEAR EL TIEMPO
         }
 
-        if (haveMap && Input.GetKeyDown(KeyCode.V))
+        if (haveMap && Input.GetKey(KeyCode.V))
         {
             map.SetActive(true);
         }
