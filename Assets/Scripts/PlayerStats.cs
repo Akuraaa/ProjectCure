@@ -149,10 +149,10 @@ public class PlayerStats : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Door"))
         {
-            if (haveCode)
-            {
-                situationText.gameObject.SetActive(true);
-                situationText.text = "Presiona F para abrir";
+            //if (haveCode)
+            //{
+            //    situationText.gameObject.SetActive(true);
+            //    situationText.text = "Presiona F para abrir";
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     openDoor = true;
@@ -162,12 +162,12 @@ public class PlayerStats : MonoBehaviour
                         SceneManager.LoadScene("Win");
                     }
                 }
-            }
-            else
-            {
-                situationText.gameObject.SetActive(true);
-                situationText.text = "Necesitas el codigo para abrir";
-            }
+            //}
+           // else
+           // {
+           //     situationText.gameObject.SetActive(true);
+           //     situationText.text = "Necesitas el codigo para abrir";
+           // }
         }
 
         
