@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
 {
     public Image healthBar;
     public Image bloodyScreen;
+    public Image crowbar;
 
     public TMP_Text healthText;
     public float maxHealth = 100;
@@ -21,8 +22,10 @@ public class PlayerStats : MonoBehaviour
     public float timerToFinishLevel;
 
     [SerializeField] private TMP_Text situationText;
-    private bool haveCode, openDoor, haveMap;
-
+    [SerializeField] public bool haveCode, openDoor, haveMap, haveElectricity, haveCrowbar, canElectricBox;
+    public GameObject electricityBox;
+    public GameObject[] sparks;
+    public GameObject giantBox;
 
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private Light[] spotLights;
@@ -50,6 +53,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(haveElectricity);
         bloodyScreen.color = alphaColor;
         if (hitPlayer)
         {
@@ -83,6 +87,24 @@ public class PlayerStats : MonoBehaviour
         else
         {
             map.SetActive(false);
+        }
+
+        if (haveCrowbar)
+        {
+            crowbar.gameObject.SetActive(true);
+        }
+        else
+        {
+            crowbar.gameObject.SetActive(false);
+        }
+
+        if (!haveElectricity)
+        {
+            electricityBox.SetActive(true);
+        }
+        else
+        {
+            electricityBox.SetActive(false);
         }
     }
 
@@ -147,7 +169,65 @@ public class PlayerStats : MonoBehaviour
                 situationText.text = "Necesitas el codigo para abrir";
             }
         }
+
         
+        if (other.gameObject.CompareTag("Electricity"))
+        {
+            if (!haveElectricity)
+            {
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Deberia cortar la electricidad";
+            }
+            else
+            {
+                situationText.gameObject.SetActive(false);
+            }
+        }
+
+
+        if (other.gameObject.CompareTag("Crowbar"))
+        {
+            if (!haveCrowbar)
+            {
+                haveCrowbar = true;
+                GetComponent<AudioSource>().PlayOneShot(pickUp);
+                Destroy(other.gameObject);
+            }
+        }
+
+
+        if (other.gameObject.CompareTag("ElectricBox"))
+        {
+            if (haveCrowbar)
+            {
+                canElectricBox = true;
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Presione F para usar la barreta";
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    haveElectricity = true;
+                    foreach (var spark in sparks)
+                    {
+                        spark.SetActive(false);
+                    }
+                    giantBox.SetActive(false);
+
+                }
+            }
+            else
+            {
+                canElectricBox = false;
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Deberia buscar una barreta";
+            }
+        }
+
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        TakeDamage(50);
     }
 
     private void OnTriggerExit(Collider other)

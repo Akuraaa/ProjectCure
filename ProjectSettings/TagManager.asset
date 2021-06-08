@@ -14,6 +14,10 @@ TagManager:
   - PaperCode
   - Door
   - Mapa
+  - Electricity
+  - Cables
+  - ElectricBox
+  - Crowbar
   layers:
   - Default
   - TransparentFX
@@ -34,9 +38,9 @@ TagManager:
   - PaperCode
   - sparks
   - EnemyDeath
-  - cables
-  - electricity
-  - damagebox
+  - 
+  - 
+  - 
   - 
   - 
   - 

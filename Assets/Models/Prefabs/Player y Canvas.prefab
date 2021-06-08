@@ -169,6 +169,79 @@ MonoBehaviour:
   m_canvasRenderer: {fileID: 3275131659776471679}
   m_TextComponent: {fileID: 8543689055701634437}
   m_materialReferenceIndex: 1
+--- !u!1 &1306459237250482461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7530080047654913135}
+  - component: {fileID: 6614893436282617797}
+  - component: {fileID: 1289850613281054499}
+  m_Layer: 5
+  m_Name: Crowbar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7530080047654913135
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306459237250482461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.56148, y: 0.56148, z: 0.56148}
+  m_Children: []
+  m_Father: {fileID: 8543689056859586956}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 363.90002, y: -97.7}
+  m_SizeDelta: {x: -700, y: -350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6614893436282617797
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306459237250482461}
+  m_CullTransparentMesh: 0
+--- !u!114 &1289850613281054499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306459237250482461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: febcca74786dd7244b9544fc4fc4ecb6, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1720384738738161856
 GameObject:
   m_ObjectHideFlags: 0
@@ -29209,6 +29282,7 @@ RectTransform:
   - {fileID: 8543689055813914725}
   - {fileID: 8543689055707282050}
   - {fileID: 1411847866860229247}
+  - {fileID: 7530080047654913135}
   m_Father: {fileID: 8124224030730949773}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42048,6 +42122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 8543689057082694834}
   bloodyScreen: {fileID: 8543689055707282049}
+  crowbar: {fileID: 1289850613281054499}
   healthText: {fileID: 8543689056921991033}
   maxHealth: 100
   curHealth: 0
@@ -42055,6 +42130,14 @@ MonoBehaviour:
   hitPlayer: 0
   timerToFinishLevel: 30
   situationText: {fileID: 17312083883414571}
+  haveCode: 0
+  openDoor: 0
+  haveMap: 0
+  haveElectricity: 0
+  haveCrowbar: 0
+  canElectricBox: 0
+  electricityBox: {fileID: 0}
+  sparks: []
   timeText: {fileID: 1146269879418872260}
   spotLights: []
   normalColor: {r: 0.25231397, g: 0.7908144, b: 0.8490566, a: 0}
