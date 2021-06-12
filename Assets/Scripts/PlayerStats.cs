@@ -226,14 +226,21 @@ public class PlayerStats : MonoBehaviour
 
     }
 
-    private void OnParticleCollision(GameObject other)
-    {
-        TakeDamage(50);
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Door")
+        {
+            situationText.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "Crowbar")
+        {
+            situationText.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "Electricity")
+        {
+            situationText.gameObject.SetActive(false);
+        }
+        if (other.gameObject.tag == "ElectricBox")
         {
             situationText.gameObject.SetActive(false);
         }
