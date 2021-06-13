@@ -235,11 +235,8 @@ public class Enemy : Target
 		if (health <= 0)
 		{
 			_isDead = true;
-			Die();
 		}
-
 	}
-
 
 	public void OnAnimatorMeleeAttack()
 	{

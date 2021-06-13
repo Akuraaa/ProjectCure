@@ -6,17 +6,20 @@ public class Target : MonoBehaviour
     public int health;
     public float damage;
     public float speed;
-    private int currentHealth;
     public Animator _anim;
     public AudioSource _audio;
     public AudioClip _receiveDamage;
     public bool _isDead = false;
     protected bool _isReceivingDamage = false;
-	private bool isDead;
 	public float timeToDie;
 
+    private void Awake()
+    {
+        _anim.GetComponent<Animator>();
+    }
+
     public virtual void TakeDamage(int amount)
-     {
+    {
          if (health > 0)
          {
              health -= amount;
@@ -32,16 +35,16 @@ public class Target : MonoBehaviour
     
          if (health <= 0)
          {
-            _isDead = true;
-            Die();
+            Die();  
          }
-     }
-    
-     public virtual void Die()
-     {
-        _anim.Play("ZombieDeath");
-         Destroy(gameObject, timeToDie);
-     }
+    }
+
+    void Die()
+    {
+        _anim.SetBool("IsDead", true);
+        _isDead = true;
+        Destroy(gameObject, timeToDie);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

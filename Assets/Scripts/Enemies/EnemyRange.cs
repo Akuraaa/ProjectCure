@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class EnemyRange : Target
 {
-    public Target parentScript;
-
-    public float speed = 4f;
-
     private bool aggro;
     public float timeToAggro;
 
@@ -18,7 +14,6 @@ public class EnemyRange : Target
 
     private bool followTarget;
     private float followRange;
-    private float _followRange;
 
     public float attackRange;
     public float visionRange;
@@ -27,46 +22,49 @@ public class EnemyRange : Target
     int playerMask = 1 << 8;
     int wallMask = 1 << 11;
 
-    private bool stun;
-    private float stunTime = 0.5f;
-
     private bool cooldown;
-    public float cooldowntime = 1;
-    private float _cooldowntime = 1;
+    public float cooldownTime = 1;
+    private float _cooldownTime = 1;
 
     private Vector3 rotation;
 
-    private Rigidbody rigid;
-
-    private float invulnerabilityTime;
-    private Vector3 direction;
-    public Transform orbSpawnpoint;
+    public Transform axeSP;
     public GameObject axePrefab;
     [SerializeField] AudioClip attackSound;
+
+    private float invulnerabilityTime = 1;
+    private void Awake()
+    {
+        cooldown = false;
+        this.enabled = true;
+    }
+
     private void Start()
     {
         _anim = GetComponent<Animator>();
-        parentScript = GetComponent<Target>();
-        _cooldowntime = cooldowntime;
-        rigid = GetComponent<Rigidbody>();
-        timeToDie = 5f;
+        _cooldownTime = cooldownTime;
     }
 
 
     private void Update()
     {
-        //target = new Vector3 (player.position.x,transform.position.y, player.position.z);
-        if (!parentScript._isDead)
+        Debug.Log("La vida del zombie es " + health);
+        if (!_isDead)
         {
             invulnerabilityTime -= Time.deltaTime;
             followRange = Vector3.Distance(transform.position, player.position);
 
             if (followRange < attackRange && !cooldown)
             {
-                _anim.SetBool("IsAttacking", true);
-                Cooldown();
-                //Attack();
+                speed = 0;
+                _anim.SetTrigger("Attack");
+                cooldown = true;
             }
+            else
+            {
+                speed = .5f;
+            }
+
             if (cooldown)
             {
                 Cooldown();
@@ -77,27 +75,12 @@ public class EnemyRange : Target
                 Move();
             }
         }
-        else
-        {
-            gameObject.layer = LayerMask.NameToLayer("EnemyDeath");
-        }
     }
 
     void Move()
     {
-        if (stun)
-        {
-            stunTime -= Time.deltaTime;
 
-            if (stunTime <= 0)
-            {
-
-                stunTime = 0.5f;
-                stun = false;
-            }
-        }
-
-        if (aggro && !stun)
+        if (aggro)
         {
             followTarget = true;
             _anim.SetBool("IsWalking", false);
@@ -114,7 +97,7 @@ public class EnemyRange : Target
 
         else
         {
-            if (followRange < visionRange && !stun)
+            if (followRange < visionRange)
             {
                 Direction = player.position - transform.position;
                 Direction = Direction.normalized;
@@ -131,7 +114,7 @@ public class EnemyRange : Target
                     followTarget = true;
                     _anim.SetBool("IsWalking", false);
                     transform.rotation = Quaternion.LookRotation(player.position - transform.position);
-                    transform.position += transform.forward * speed * Time.deltaTime;     
+                    transform.position += transform.forward * speed * Time.deltaTime;
                     getRotation = false;
                 }
 
@@ -172,16 +155,16 @@ public class EnemyRange : Target
 
     }
 
-
     void Cooldown()
     {
-        _cooldowntime -= Time.deltaTime;
-        if (_cooldowntime <= 0)
+        _cooldownTime -= Time.deltaTime;
+        if (_cooldownTime <= 0)
         {
 
             _anim.SetBool("IsAttacking", false);
             cooldown = false;
-            _cooldowntime = cooldowntime;
+            _cooldownTime = cooldownTime;
+            //speed = 0.5f;
         }
     }
 
@@ -209,30 +192,28 @@ public class EnemyRange : Target
     {
         if (invulnerabilityTime <= 0)
         {
-
             if (health > 0)
             {
                 health -= damage;
                 aggro = true;
                 timeToAggro = 10f;
                 _audio.PlayOneShot(_receiveDamage);
-                stun = true;
-                invulnerabilityTime = 1f;
+                _anim.SetTrigger("ZombieHit");
+                invulnerabilityTime = 1;
             }
 
             if (health <= 0)
             {
+                _anim.SetBool("IsDead", true);
                 _isDead = true;
-                rigid.useGravity = true;
             }
-
         }
     }
 
     public void OnAnimatorRangeAttack()
     {
         _audio.PlayOneShot(attackSound);
-        AxeScript axe = Object.Instantiate(axePrefab, orbSpawnpoint.position, orbSpawnpoint.rotation).GetComponent<AxeScript>();
-        axePrefab.GetComponent<AxeScript>().VectorToPlayer(orbSpawnpoint.transform.position, player.transform.position);
+        AxeScript axe = Instantiate(axePrefab, axeSP.position, axeSP.rotation).GetComponent<AxeScript>();
+        axe.transform.LookAt(player);
     }
 }

@@ -46,7 +46,8 @@ public class ZombieBase : Target
 
     private void Update()
     {
-        transform.LookAt(target);
+        var rot = new Vector3(target.position.x, transform.position.y, target.position.z);
+        transform.rotation = Quaternion.LookRotation(rot - transform.position);
         transform.position += transform.forward * speed * Time.deltaTime;
         if (LineOfSight() == true)
         {

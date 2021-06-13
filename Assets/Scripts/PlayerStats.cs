@@ -33,8 +33,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private AudioClip pickUp;
     [SerializeField] private GameObject map;
 
-    private void Start()
+    private void Awake()
     {
+        haveElectricity = true;
+    }
+    private void Start()
+    {     
         Cursor.visible = false;
         alphaColor = bloodyScreen.color;
         alphaColor.a = 0;
@@ -53,7 +57,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(haveElectricity);
         bloodyScreen.color = alphaColor;
         if (hitPlayer)
         {
@@ -98,13 +101,13 @@ public class PlayerStats : MonoBehaviour
             crowbar.gameObject.SetActive(false);
         }
 
-        if (!haveElectricity)
+        if (haveElectricity)
         {
-            electricityBox.SetActive(true);
+            electricityBox.SetActive(false);
         }
         else
         {
-            electricityBox.SetActive(false);
+            electricityBox.SetActive(true);
         }
     }
 
@@ -173,14 +176,14 @@ public class PlayerStats : MonoBehaviour
         
         if (other.gameObject.CompareTag("Electricity"))
         {
-            if (!haveElectricity)
+            if (haveElectricity)
             {
-                situationText.gameObject.SetActive(true);
-                situationText.text = "Deberia cortar la electricidad";
+                situationText.gameObject.SetActive(false);         
             }
             else
             {
-                situationText.gameObject.SetActive(false);
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Deberia cortar la electricidad";
             }
         }
 
@@ -206,7 +209,7 @@ public class PlayerStats : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    haveElectricity = true;
+                    haveElectricity = false;
                     foreach (var spark in sparks)
                     {
                         spark.SetActive(false);

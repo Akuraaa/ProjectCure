@@ -8,7 +8,7 @@ public class AxeScript : MonoBehaviour
     public float _speed;
     public float damage;
     private AudioSource _audio;
-    public Vector3 _dir, _dest;
+    [SerializeField] private GameObject renderAxe;
     [SerializeField] private AudioClip axeSound;
 
     [Range(5, 100)]
@@ -25,18 +25,16 @@ public class AxeScript : MonoBehaviour
     private void Awake()
     {
         _audio = GetComponent<AudioSource>();
-        _dir = transform.position;
     }
 
     private void Start()
     {
-        //_audio.PlayOneShot(axeSound);
+        _audio.PlayOneShot(axeSound);
     }
     void Update()
     {
-        VectorToPlayer(_dir, _dest); 
-        transform.Rotate(rotationSpeed, 0, 0);
-        transform.position += (_dest - _dir).normalized * _speed * Time.deltaTime;
+        renderAxe.transform.Rotate(rotationSpeed, 0, 0);
+        transform.position += transform.forward * _speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +43,18 @@ public class AxeScript : MonoBehaviour
         {
             other.gameObject.GetComponent<PlayerStats>().SendMessage("TakeDamage", damage);
             Destroy(gameObject);
+        }
+        else
+        {
+            if (!destroyOnImpact)
+            {
+                StartCoroutine(DestroyTimer());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 
@@ -67,14 +77,5 @@ public class AxeScript : MonoBehaviour
             (Random.Range(minDestroyTime, maxDestroyTime));
         //Destroy bullet object
         Destroy(gameObject);
-    }
-
-    public void VectorToPlayer(Vector3 spawn, Vector3 dest)
-    {
-        if (spawn != null && dest != null)
-        {
-            _dir = spawn;
-            _dest = dest;
-        }
     }
 }
