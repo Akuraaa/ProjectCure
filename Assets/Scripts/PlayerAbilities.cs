@@ -167,7 +167,7 @@ public class PlayerAbilities : MonoBehaviour
             dashVector = player.transform.forward * dashForce;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) /*&& !isDash*/)
+        if (Input.GetKeyDown(KeyCode.E) && !isDash)
         {
             if (fward)
             {
