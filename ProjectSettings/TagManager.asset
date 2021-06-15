@@ -18,6 +18,8 @@ TagManager:
   - Cables
   - ElectricBox
   - Crowbar
+  - gascan
+  - turret
   layers:
   - Default
   - TransparentFX
