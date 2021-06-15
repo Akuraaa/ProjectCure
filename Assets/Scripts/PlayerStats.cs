@@ -9,37 +9,39 @@ public class PlayerStats : MonoBehaviour
 {
     public Image healthBar;
     public Image bloodyScreen;
-    public Image crowbar;
+    public Image crowbarImg;
+    public Image oilImg;
 
     public TMP_Text healthText;
+    public TMP_Text oilCountText;
     public float maxHealth = 100;
     public float curHealth = 0;
+    public int oilCount = 0;
 
     public float timeToFade = 2;
     public bool hitPlayer = false;
     private Color alphaColor;
 
-    public float timerToFinishLevel;
+    //public float timerToFinishLevel;
 
     [SerializeField] private TMP_Text situationText;
-    [SerializeField] public bool haveCode, openDoor, haveMap, haveElectricity, haveCrowbar, canElectricBox, canGenerator;
+    [SerializeField] public bool haveCode, openDoor, haveMap, haveElectricity, haveCrowbar, canGenerator;
     public GameObject electricityBox;
     public GameObject[] sparks;
     public GameObject giantBoxCollider;
 
 
-    [SerializeField] private TMP_Text timeText;
-    [SerializeField] private Light[] spotLights;
-    [SerializeField] private Color normalColor, warningColor;
+    //[SerializeField] private TMP_Text timeText;
+    //[SerializeField] private Light[] spotLights;
+    //[SerializeField] private Color normalColor, warningColor;
     [SerializeField] private AudioClip pickUp;
     [SerializeField] private GameObject map;
 
-    private void Awake()
-    {
-        haveElectricity = true;
-    }
     private void Start()
-    {     
+    {
+        oilCount = 0;
+        oilCountText.text = oilCount + "/3";
+        oilImg.gameObject.SetActive(false);
         Cursor.visible = false;
         alphaColor = bloodyScreen.color;
         alphaColor.a = 0;
@@ -47,13 +49,12 @@ public class PlayerStats : MonoBehaviour
         curHealth = maxHealth;
         healthText.text = curHealth.ToString();
         SetHealthBar();
-
         situationText.gameObject.SetActive(false);
-        timeText.gameObject.SetActive(false);
-        for (int i = 0; i < spotLights.Length; i++)
-        {
-            spotLights[i].color = normalColor;
-        }
+        //timeText.gameObject.SetActive(false);
+        //for (int i = 0; i < spotLights.Length; i++)
+        //{
+        //    spotLights[i].color = normalColor;
+        //}
     }
 
     private void Update()
@@ -67,7 +68,7 @@ public class PlayerStats : MonoBehaviour
                 bloodyScreen.color = alphaColor;
                 alphaColor.a -= Time.deltaTime;
                 timeToFade = .25f;
-                
+                return;
             }
 
             if (alphaColor.a <= 0)
@@ -75,13 +76,6 @@ public class PlayerStats : MonoBehaviour
                 hitPlayer = false;
                 timeToFade = 2;
             }
-        }
-
-        if (openDoor)
-        {
-            SetLightning();
-            //SetTimerOn();
-            //SETEAR EL TIEMPO
         }
 
         if (haveMap && Input.GetKey(KeyCode.V))
@@ -95,11 +89,11 @@ public class PlayerStats : MonoBehaviour
 
         if (haveCrowbar)
         {
-            crowbar.gameObject.SetActive(true);
+            crowbarImg.gameObject.SetActive(true);
         }
         else
         {
-            crowbar.gameObject.SetActive(false);
+            crowbarImg.gameObject.SetActive(false);
         }
 
         if (haveElectricity)
@@ -110,6 +104,8 @@ public class PlayerStats : MonoBehaviour
         {
             electricityBox.SetActive(true);
         }
+
+        oilCountText.text = oilCount + "/3";
     }
 
     public void SetHealthBar()
@@ -127,20 +123,13 @@ public class PlayerStats : MonoBehaviour
         if (curHealth < 0)
         {
             Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Derrota");
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PaperCode"))
-        {
-            haveCode = true;
-            GetComponent<AudioSource>().PlayOneShot(pickUp);         
-            Destroy(other.gameObject);
-        }
-
         if (other.gameObject.CompareTag("Mapa"))
         {
             haveMap = true;
@@ -153,28 +142,74 @@ public class PlayerStats : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Door"))
         {
-            //if (haveCode)
-            //{
-            //    situationText.gameObject.SetActive(true);
-            //    situationText.text = "Presiona F para abrir";
+            if (oilCount == 3)
+            {
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Presiona F para abrir";
                 if (Input.GetKeyDown(KeyCode.F))
-                {
+                {            
                     openDoor = true;
                     if (openDoor)
                     {
                         situationText.gameObject.SetActive(false);
+                        Cursor.visible = true;
+                        Cursor.lockState = CursorLockMode.None;
                         SceneManager.LoadScene("Win");
                     }
                 }
-            //}
-           // else
-           // {
-           //     situationText.gameObject.SetActive(true);
-           //     situationText.text = "Necesitas el codigo para abrir";
-           // }
+            }
+            else
+            {
+                situationText.gameObject.SetActive(true);
+                situationText.text = "No puedes abrir porque no hay electricidad";
+            }
+
         }
 
-        
+        if (other.gameObject.CompareTag("Generator"))
+        {
+            oilImg.gameObject.SetActive(true);
+            if (oilCount == 0)
+            {
+                situationText.gameObject.SetActive(true);
+                oilImg.gameObject.SetActive(true);
+                situationText.text = "Necesitas combustible";
+            }
+            else if (oilCount > 0 && oilCount < 3)
+            {
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Necesitas mas combustible";
+            }
+            else if (oilCount == 3)
+            {
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Presiona F para activar el generador";
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    other.GetComponent<Outline>().enabled = false;
+                }
+            }
+        }
+
+
+        if (other.gameObject.CompareTag("Oil"))
+        {
+            oilImg.gameObject.SetActive(true);
+            if (oilCount < 3)
+            {
+                situationText.gameObject.SetActive(true);
+                situationText.text = "Presiona F para agarrar";
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    oilCount += 1;
+                    GetComponent<AudioSource>().PlayOneShot(pickUp);
+                    Destroy(other.gameObject);
+                    situationText.gameObject.SetActive(false);
+                }
+            }
+        }
+
         if (other.gameObject.CompareTag("Electricity"))
         {
             if (haveElectricity)
@@ -204,24 +239,23 @@ public class PlayerStats : MonoBehaviour
         {
             if (haveCrowbar)
             {
-                canElectricBox = true;
                 situationText.gameObject.SetActive(true);
                 situationText.text = "Presione F para usar la barreta";
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    haveElectricity = false;
+                    haveElectricity = true;
                     foreach (var spark in sparks)
                     {
                         spark.SetActive(false);
                     }
+                    situationText.gameObject.SetActive(false);
                     giantBoxCollider.SetActive(false);
 
                 }
             }
             else
             {
-                canElectricBox = false;
                 situationText.gameObject.SetActive(true);
                 situationText.text = "Deberia buscar una barreta";
             }
@@ -231,56 +265,64 @@ public class PlayerStats : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Door")
-        {
-            situationText.gameObject.SetActive(false);
-        }
-        if (other.gameObject.tag == "Crowbar")
-        {
-            situationText.gameObject.SetActive(false);
-        }
-        if (other.gameObject.tag == "Electricity")
-        {
-            situationText.gameObject.SetActive(false);
-        }
-        if (other.gameObject.tag == "ElectricBox")
-        {
-            situationText.gameObject.SetActive(false);
-        }
+       if (other.gameObject.CompareTag("Door"))
+       {
+           situationText.gameObject.SetActive(false);
+       }
+       if (other.gameObject.CompareTag("Crowbar"))
+       {
+           situationText.gameObject.SetActive(false);
+       }
+       if (other.gameObject.CompareTag("Electricity"))
+       {
+           situationText.gameObject.SetActive(false);
+       }
+       if (other.gameObject.CompareTag("ElectricBox"))
+       {
+           situationText.gameObject.SetActive(false);
+       }
+       if (other.gameObject.CompareTag("Generator"))
+       {
+           situationText.gameObject.SetActive(false);
+       }
+       if (other.gameObject.CompareTag("Oil"))
+       {
+           situationText.gameObject.SetActive(false);
+       }
     }
 
-    private void SetLightning()
-    {
-        for (int i = 0; i < spotLights.Length; i++)
-        {
-            spotLights[i].GetComponent<LightScript>().changeColor = true;
-            spotLights[i].color = warningColor;
-        }
-    }
-
-    private void SetTimerOn()
-    {
-        if (timerToFinishLevel > 0)
-        {
-            timerToFinishLevel -= Time.deltaTime;
-        }
-        else
-        {
-            timerToFinishLevel = 0;
-        }
-        DisplayTime(timerToFinishLevel);
-    }
-
-    void DisplayTime(float timeToDisplay)
-    {
-        if (timeToDisplay < 0)
-        {
-            timeToDisplay = 0;
-        }
-
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        float miliseconds = timeToDisplay % 1 * 100;
-
-        timeText.text = string.Format("{0:00}:{1:00}", seconds, miliseconds);
-    }
+    //private void SetLightning()
+    //{
+    //    for (int i = 0; i < spotLights.Length; i++)
+    //    {
+    //        spotLights[i].GetComponent<LightScript>().changeColor = true;
+    //        spotLights[i].color = warningColor;
+    //    }
+    //}
+    //
+    //private void SetTimerOn()
+    //{
+    //    if (timerToFinishLevel > 0)
+    //    {
+    //        timerToFinishLevel -= Time.deltaTime;
+    //    }
+    //    else
+    //    {
+    //        timerToFinishLevel = 0;
+    //    }
+    //    DisplayTime(timerToFinishLevel);
+    //}
+    //
+    //void DisplayTime(float timeToDisplay)
+    //{
+    //    if (timeToDisplay < 0)
+    //    {
+    //        timeToDisplay = 0;
+    //    }
+    //
+    //    float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+    //    float miliseconds = timeToDisplay % 1 * 100;
+    //
+    //    timeText.text = string.Format("{0:00}:{1:00}", seconds, miliseconds);
+    //}
 }

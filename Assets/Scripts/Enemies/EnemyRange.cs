@@ -32,7 +32,6 @@ public class EnemyRange : Target
     public GameObject axePrefab;
     [SerializeField] AudioClip attackSound;
 
-    public float invulnerabilityTime = 1;
     private void Awake()
     {
         cooldown = false;
