@@ -64,7 +64,7 @@ public class PlayerAbilities : MonoBehaviour
 
     void Updraft()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && !isUpdrafting && player._isGrounded)
+        if (Input.GetKeyDown(KeyCode.Q) /*&& !isUpdrafting && player._isGrounded*/)
         {
             _audio.PlayOneShot(updraftSound);
             updraftParticle.Play();
@@ -167,7 +167,7 @@ public class PlayerAbilities : MonoBehaviour
             dashVector = player.transform.forward * dashForce;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && !isDash)
+        if (Input.GetKeyDown(KeyCode.E) /*&& !isDash*/)
         {
             if (fward)
             {
