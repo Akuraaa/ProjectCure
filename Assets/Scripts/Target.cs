@@ -12,11 +12,13 @@ public class Target : MonoBehaviour
     public bool _isDead = false;
     protected bool _isReceivingDamage = false;
 	public float timeToDie;
+    public float invulnerabilityTime = 1;
 
     private void Awake()
     {
-        _anim.GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
     }
+
 
     public virtual void TakeDamage(int amount)
     {
