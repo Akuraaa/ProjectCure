@@ -32,7 +32,7 @@ public class EnemyRange : Target
     public GameObject axePrefab;
     [SerializeField] AudioClip attackSound;
 
-    private float invulnerabilityTime = 1;
+    public float invulnerabilityTime = 1;
     private void Awake()
     {
         cooldown = false;
@@ -48,7 +48,6 @@ public class EnemyRange : Target
 
     private void Update()
     {
-        Debug.Log("La vida del zombie es " + health);
         if (!_isDead)
         {
             invulnerabilityTime -= Time.deltaTime;
@@ -79,11 +78,10 @@ public class EnemyRange : Target
 
     void Move()
     {
-
         if (aggro)
         {
             followTarget = true;
-            _anim.SetBool("IsWalking", false);
+            _anim.SetBool("IsWalking", true);
             transform.rotation = Quaternion.LookRotation(player.position - transform.position);
             transform.position += transform.forward * speed * Time.deltaTime;
             getRotation = false;
@@ -94,7 +92,6 @@ public class EnemyRange : Target
                 aggro = false;
             }
         }
-
         else
         {
             if (followRange < visionRange)
@@ -125,9 +122,7 @@ public class EnemyRange : Target
                 }
 
             }
-
             else
-
             {
                 followTarget = false;
                 _anim.SetBool("IsWalking", true);

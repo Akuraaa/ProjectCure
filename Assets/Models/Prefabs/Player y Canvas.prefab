@@ -13464,7 +13464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3653488209799974831
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14295,7 +14295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -371, y: -157.6}
+  m_AnchoredPosition: {x: -371, y: -159.2}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8543689055764624908
@@ -19331,13 +19331,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8543689056095103952}
-    characterCount: 1
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -29249,7 +29249,7 @@ GameObject:
   - component: {fileID: 8543689056859586958}
   - component: {fileID: 8543689056859586959}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CanvasOverlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29847,7 +29847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.089966, y: -7.3200073}
+  m_AnchoredPosition: {x: -24.089844, y: -7.3200684}
   m_SizeDelta: {x: -91.119995, y: -22.710022}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8543689057147360550
@@ -34940,7 +34940,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -371, y: -95.7}
+  m_AnchoredPosition: {x: -371, y: -97}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8543689057404420657
@@ -39766,7 +39766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.4500732, y: -6.203491}
+  m_AnchoredPosition: {x: -7.4501953, y: -6.203491}
   m_SizeDelta: {x: -51.86, y: -23.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8543689057751087899
@@ -41939,8 +41939,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8544902603792313267}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.07, y: 1.6, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8547341753389019013}
@@ -41965,7 +41965,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &8544902603792313264
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -42095,7 +42095,7 @@ MonoBehaviour:
   runningSpeed: 9
   movementSmoothness: 0.125
   jumpForce: 5
-  mouseSensitivity: 4
+  mouseSensitivity: 3
   rotationSmoothness: 0.05
   minVerticalAngle: -90
   maxVerticalAngle: 90
@@ -42137,11 +42137,36 @@ MonoBehaviour:
   haveCrowbar: 0
   canElectricBox: 0
   electricityBox: {fileID: 0}
-  sparks: []
+  sparks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  giantBox: {fileID: 0}
   timeText: {fileID: 1146269879418872260}
   spotLights: []
-  normalColor: {r: 0.25231397, g: 0.7908144, b: 0.8490566, a: 0}
-  warningColor: {r: 0.990566, g: 0, b: 0, a: 0}
+  normalColor: {r: 0.25231397, g: 0.7908144, b: 0.8490566, a: 1}
+  warningColor: {r: 0.990566, g: 0, b: 0, a: 1}
   pickUp: {fileID: 8300000, guid: 2e91044f2ff105d409aeb801610cd0cb, type: 3}
   map: {fileID: 1142294993259682973}
 --- !u!114 &8544902603792313270
@@ -42158,13 +42183,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isUpdrafting: 0
   updraftForce: 10
-  updraftCooldown: 5
+  updraftCooldown: 10
   updraftSound: {fileID: 8300000, guid: e3c2da43c3416694095a554c3b596984, type: 3}
   updraftUI: {fileID: 8543689057404420658}
   isDash: 0
   dashForce: 8
   dashDuration: 0.25
-  dashCooldown: 5
+  dashCooldown: 10
   dashSound: {fileID: 8300000, guid: 7aedeaf655fc4254dbc303e0653deed3, type: 3}
   dashUI: {fileID: 8543689055764624909}
   forwardDash: {fileID: 8543689056428034200}
@@ -42173,8 +42198,8 @@ MonoBehaviour:
   rightDash: {fileID: 8543689057670257394}
   updraftParticle: {fileID: 8543689057365601239}
   isInvisibility: 0
-  invisibilityTime: 2
-  invisibilityCooldown: 5
+  invisibilityTime: 5
+  invisibilityCooldown: 15
   invisibilitySound: {fileID: 8300000, guid: 21162d21ab6eb9949b3fea778e9003b0, type: 3}
   invisiblityUI: {fileID: 8543689056781603898}
   cloakFeedback: {fileID: 8543689056124278687}

@@ -43,10 +43,13 @@ public class Bullet : MonoBehaviour
 		if (collision.gameObject.tag == "Enemy")
         {
 			Instantiate(bloodImpactPrefabs[Random.Range(0, bloodImpactPrefabs.Length)], transform.position, Quaternion.LookRotation(collision.contacts[0].normal));
-			collision.transform.GetComponent<Target>().TakeDamage(damage);
-			collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll | RigidbodyConstraints.FreezeRotation;
-			StartCoroutine(ChangeConstrains());
-			collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+			if (collision.gameObject.GetComponent<EnemyRange>().invulnerabilityTime <= 0)
+            {
+				collision.transform.GetComponent<Target>().TakeDamage(damage);
+				collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll | RigidbodyConstraints.FreezeRotation;
+				StartCoroutine(ChangeConstrains());
+				collision.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            }
 			Destroy(gameObject);			
 		}
 

@@ -22,10 +22,11 @@ public class PlayerStats : MonoBehaviour
     public float timerToFinishLevel;
 
     [SerializeField] private TMP_Text situationText;
-    [SerializeField] public bool haveCode, openDoor, haveMap, haveElectricity, haveCrowbar, canElectricBox;
+    [SerializeField] public bool haveCode, openDoor, haveMap, haveElectricity, haveCrowbar, canElectricBox, canGenerator;
     public GameObject electricityBox;
     public GameObject[] sparks;
-    public GameObject giantBox;
+    public GameObject giantBoxCollider;
+
 
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private Light[] spotLights;
@@ -214,7 +215,7 @@ public class PlayerStats : MonoBehaviour
                     {
                         spark.SetActive(false);
                     }
-                    giantBox.SetActive(false);
+                    giantBoxCollider.SetActive(false);
 
                 }
             }
